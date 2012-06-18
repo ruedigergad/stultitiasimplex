@@ -1,0 +1,21 @@
+1.3.1
+	- Optimize code.
+
+1.3.0
+	- Add option for selecting the source for versions using pulse audio.
+
+1.2.0
+	- Use scroll area for settings dialog.
+	- Add warning for volume override setting.
+	- Change scale of record dialog VU Meter.
+	- Optimize update of VU Meter.
+	- Fix icons for Maemo version.
+
+1.1.0
+	- Use native file dialogs.
+	- Add dialog for reordering buttons.
+	- Fix page switching.
+	- Adjust about dialog.
+
+1.0.0
+	Initial Version

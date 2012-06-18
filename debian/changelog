@@ -1,0 +1,29 @@
+stultitiasimplex (1.3.1) stable; urgency=low
+
+  * Optimize code.
+
+ -- Ruediger Gad <r.c.g@gmx.de>  Sun, 09 Jan 2011 18:13:00 +0000
+
+stultitiasimplex (1.3.0) stable; urgency=low
+
+  * Add selection option for source.
+
+ -- Ruediger Gad <r.c.g@gmx.de>  Sun, 09 Jan 2011 15:22:00 +0000
+
+stultitiasimplex (1.2.0-1) stable; urgency=low
+
+  * Fix changelog.
+
+ -- Ruediger Gad <r.c.g@gmx.de>  Sat, 11 Dec 2010 17:16:00 +0000
+
+stultitiasimplex (1.2.0) stable; urgency=low
+
+  * Update to latest version.
+
+ -- Ruediger Gad <r.c.g@gmx.de>  Tue, 23 Nov 2010 22:20:54 +0000
+
+stultitiasimplex (1.1.0) stable; urgency=low
+
+  * Add dialog for reordering. Improve stability.
+
+ -- Ruediger Gad <r.c.g@gmx.de>  Thu, 18 Nov 2010 12:18:14 +0000

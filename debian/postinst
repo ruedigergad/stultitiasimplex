@@ -1,0 +1,3 @@
+#!/bin/sh
+ln -s /opt/maemo/usr/bin/StultitiaSimplex /usr/bin/StultitiaSimplex
+gtk-update-icon-cache /usr/share/icons/hicolor
