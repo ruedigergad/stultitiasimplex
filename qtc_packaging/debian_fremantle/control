@@ -1,0 +1,65 @@
+Source: stultitiasimplex
+Section: user/multimedia
+Priority: extra
+Maintainer: Ruediger Gad <r.c.g@gmx.de>
+Build-Depends: debhelper (>= 5), libqt4-dev, pulseaudio-dev, libsndfile1-dev
+Standards-Version: 3.7.2
+
+Package: stultitiasimplex
+Architecture: armel
+Depends: libqt4-core, libqt4-gui, pulseaudio
+Description: StultitiaSimplex is a simple, platform-independent "soundboard" application.
+ With StultitiaSimplex you have the silly audio clips of your choice easily at hand whenever you need them.
+ A record dialog for recording audio clips is included.
+ .
+ StultitiaSimplex includes an option to override the volume setting used for playback.
+ Use this setting with caution!
+ Setting a too high volume may either harm your or others ears or may possibly damage your N900 or both!
+ You use this option at your own risk and are responsible for choosing a save volume!
+ .
+ Furthermore, StultitiaSimplex is not affected by the device mute state.
+ Hence, even when muted the StultitiaSimplex sound output will be audible.
+ This behavior is similar to the built-in media player.
+ .
+ StultitiaSimplex is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; 
+ without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+ See the GNU General Public License for more details.
+XSBC-Bugtracker: http://sourceforge.net/tracker/?group_id=353764&atid=1477861
+XB-Maemo-Icon-26:
+ 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
+ dHdfl4vvH8R+WpcCS6cWAAAAAElFTkSuQmCC
+ ====
