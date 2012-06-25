@@ -19,13 +19,19 @@
 
 #include <QtGui/QApplication>
 
+#ifndef MEEGO_EDITION_HARMATTAN
 #include "src/ui/mainwindow.h"
+#endif
 
 int main(int argc, char *argv[])
 {
+#ifdef MEEGO_EDITION_HARMATTAN
+    return 0;
+#else
     QApplication a(argc, argv);
     MainWindow w;
     w.show();
 
     return a.exec();
+#endif
 }

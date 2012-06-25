@@ -1,0 +1,11 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=StultitiaSimplex
+GenericName=StultitiaSimplex
+Comment=StultitiaSimplex is a simple sound board application.
+Exec=/opt/stultitiasimplex/bin/StultitiaSimplex
+Icon=/usr/share/icons/hicolor/64x64/apps/stultitiasimplex.png
+Terminal=false
+Type=Application
+Categories=AudioVideo;
+

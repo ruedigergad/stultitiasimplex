@@ -6,7 +6,6 @@
 
 unix:CONFIG += link_pkgconfig
 
-
 PKGCONFIG += sndfile
 
 win32:PKGCONFIG += portaudio-2.0
@@ -15,10 +14,9 @@ unix:PKGCONFIG += libpulse libpulse-simple
 win32:INCLUDEPATH += lib_include
 win32:LIBS += -Llib -llibportaudio-2 -llibsndfile-1
 
-
 win32:RC_FILE = res/windows/StultitiaSimplex.rc
 
-QT       += core gui
+QT += core gui
 
 TARGET = StultitiaSimplex
 TEMPLATE = app
@@ -34,14 +32,6 @@ SOURCES += \
     src/io/audio/audioplayer.cpp \
     src/io/audio/abstractaudioplayerbackend.cpp \
     src/io/audio/abstractaudiorecorderbackend.cpp \
-    src/ui/dialog/editbuttondialog.cpp \
-    src/ui/mainwindow.cpp \
-    src/ui/soundbutton.cpp \
-    src/ui/dialog/aboutdialog.cpp \
-    src/ui/dialog/recorddialog.cpp \
-    src/ui/dialog/reorderdialog.cpp \
-    src/ui/dialog/settingsdialog.cpp \
-    src/ui/dialog/soundfilelistdialog.cpp \
 
 
 unix:SOURCES += \
@@ -66,14 +56,6 @@ HEADERS += \
     src/io/audio/audioplayer.h \
     src/io/audio/abstractaudioplayerbackend.h \
     src/io/audio/abstractaudiorecorderbackend.h \
-    src/ui/dialog/editbuttondialog.h \
-    src/ui/mainwindow.h \
-    src/ui/soundbutton.h \
-    src/ui/dialog/aboutdialog.h \
-    src/ui/dialog/recorddialog.h \
-    src/ui/dialog/reorderdialog.h \
-    src/ui/dialog/settingsdialog.h \
-    src/ui/dialog/soundfilelistdialog.h \
 
 
 unix:HEADERS += \
@@ -91,7 +73,7 @@ win32:HEADERS += \
     src/io/audio/portaudio/portaudiorecordthread.h \
 
 
-FORMS += \
+win32:FORMS += \
     forms/aboutdialog.ui \
     forms/editbuttondialog.ui \
     forms/recorddialog.ui \
@@ -100,13 +82,57 @@ FORMS += \
     forms/soundfilelistdialog.ui \
 
 
-unix {
-   DEFINES += UNIX
-   INSTALLS += target desktop icon48
-   target.path = /opt/maemo/usr/bin
-   desktop.path = /usr/share/applications/hildon
-   desktop.files += res/maemo/usr/share/applications/hildon/stultitiasimplex.desktop
-   icon48.path = /usr/share/icons/hicolor/48x48/apps
-   icon48.files += res/maemo/usr/share/icons/hicolor/48x48/hildon/stultitiasimplex.png
+exists($$QMAKE_INCDIR_QT"/../applauncherd/MDeclarativeCache"): {
+    MEEGO_VERSION_MAJOR     = 1
+    MEEGO_VERSION_MINOR     = 2
+    MEEGO_VERSION_PATCH     = 0
+    MEEGO_EDITION           = harmattan
+
+    DEFINES += MEEGO_EDITION_HARMATTAN NFC_ENABLED
+
+    target.path = /opt/stultitiasimplex/bin
+    desktop.files += res/meego/usr/share/applications/stultitiasimplex.desktop
+    desktop.path = /usr/share/applications
+    icon.files += res/meego/usr/share/icons/hicolor/64x64/apps/stultitiasimplex.png
+    icon.path = /usr/share/icons/hicolor/64x64/apps
+
+    INSTALLS += target desktop icon
+} else:simulator {
+    DEFINES += NFC_ENABLED
+} else:unix {
+    SOURCES += src/ui/dialog/editbuttondialog.cpp \
+        src/ui/mainwindow.cpp \
+        src/ui/soundbutton.cpp \
+        src/ui/dialog/aboutdialog.cpp \
+        src/ui/dialog/recorddialog.cpp \
+        src/ui/dialog/reorderdialog.cpp \
+        src/ui/dialog/settingsdialog.cpp \
+        src/ui/dialog/soundfilelistdialog.cpp \
+
+    HEADERS +=     src/ui/dialog/editbuttondialog.h \
+        src/ui/mainwindow.h \
+        src/ui/soundbutton.h \
+        src/ui/dialog/aboutdialog.h \
+        src/ui/dialog/recorddialog.h \
+        src/ui/dialog/reorderdialog.h \
+        src/ui/dialog/settingsdialog.h \
+        src/ui/dialog/soundfilelistdialog.h \
+
+    FORMS += \
+        forms/aboutdialog.ui \
+        forms/editbuttondialog.ui \
+        forms/recorddialog.ui \
+        forms/reorderdialog.ui \
+        forms/settingsdialog.ui \
+        forms/soundfilelistdialog.ui \
+
+    target.path = /opt/maemo/usr/bin
+    desktop.path = /usr/share/applications/hildon
+    desktop.files += res/maemo/usr/share/applications/hildon/stultitiasimplex.desktop
+    icon48.path = /usr/share/icons/hicolor/48x48/apps
+    icon48.files += res/maemo/usr/share/icons/hicolor/48x48/hildon/stultitiasimplex.png
+
+    INSTALLS += target desktop icon48
 }
 
+unix:DEFINES += UNIX
