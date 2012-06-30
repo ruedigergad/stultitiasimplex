@@ -22,6 +22,7 @@
 #ifdef MEEGO_EDITION_HARMATTAN
 #include <applauncherd/MDeclarativeCache>
 #include <QtDeclarative>
+#include "src/data/soundfile.h"
 #else
 #include "src/ui/mainwindow.h"
 #endif
@@ -33,7 +34,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     QApplication *app = MDeclarativeCache::qApplication(argc, argv);
     QDeclarativeView *view = MDeclarativeCache::qDeclarativeView();
 
-//    qmlRegisterType<NodeListModel>("qtodo", 1, 0, "NodeListModel");
+    qmlRegisterType<SoundFile>("stultitiasimplex", 1, 0, "SoundFile");
 //    qmlRegisterType<ToDoStorage>("qtodo", 1, 0, "ToDoStorage");
 
     view->setSource(QUrl("/opt/stultitiasimplex/qml/main.qml"));
