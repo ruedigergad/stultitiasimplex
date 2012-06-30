@@ -34,7 +34,8 @@ class SoundFileList : public QAbstractListModel
 public:
     enum SoundFileRoles {
         DescriptionRole = Qt::UserRole + 1,
-        FileNameRole = Qt::UserRole + 2
+        FileNameRole = Qt::UserRole + 2,
+        CategoryRole = Qt::UserRole + 3
     };
 
     explicit SoundFileList(QObject *parent = 0);

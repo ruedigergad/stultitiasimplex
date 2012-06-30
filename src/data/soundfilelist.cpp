@@ -39,7 +39,7 @@ SoundFileList::SoundFileList(QObject *parent) :
      * section in the ListView the same name as in the
      * model element class (here Entry, see entry.h).
      */
-//    roles[CategoryRole] = "category";
+    roles[CategoryRole] = "category";
     setRoleNames(roles);
 
     soundFiles = new QList<SoundFile *>();
@@ -99,6 +99,11 @@ void SoundFileList::readFromCsv(QString filename){
             SoundFile *sF = new SoundFile();
             sF->setDescription(list.takeFirst());
             sF->setFileName(list.takeFirst());
+            if(list.isEmpty()){
+                sF->setCategory("Default");
+            }else{
+                sF->setCategory(list.takeFirst());
+            }
 
             add(sF);
 
@@ -132,7 +137,7 @@ void SoundFileList::writeToCsv(QString filename){
         QList<SoundFile *>::iterator iter;
         for(iter = soundFiles->begin(); iter != soundFiles->end(); iter++){
             SoundFile *sF = *iter;
-            stream << sF->getDescription() << Constants::CSV_SEPARATOR << sF->getFileName() << "\n";
+            stream << sF->getDescription() << Constants::CSV_SEPARATOR << sF->getFileName() << Constants::CSV_SEPARATOR << sF->getCategory() << "\n";
         }
 
         stream.flush();

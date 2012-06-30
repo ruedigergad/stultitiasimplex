@@ -31,26 +31,31 @@ class SoundFile : public QObject
 
     Q_PROPERTY(QString description READ getDescription WRITE setDescription NOTIFY descriptionChanged)
     Q_PROPERTY(QString fileName READ getFileName WRITE setFileName NOTIFY fileNameChanged)
+    Q_PROPERTY(QString category READ getCategory WRITE setCategory NOTIFY categoryChanged)
 
 public:
-    explicit SoundFile(QObject *parent = 0, SoundFileList *list = 0);
+    explicit SoundFile(QObject *parent = 0);
     ~SoundFile();
 
     QString getDescription();
     QString getFileName();
+    QString getCategory();
     SoundFileList *getList();
 
     void setDescription(const QString desc);
     void setFileName(const QString name);
+    void setCategory(const QString category);
 
 signals:
     void changed();
-    QString descriptionChanged();
-    QString fileNameChanged();
+    void descriptionChanged(QString);
+    void fileNameChanged(QString);
+    void categoryChanged(QString);
 
 public slots:
 
 private:
+    QString category;
     QString description;
     QString fileName;
     SoundFileList *list;

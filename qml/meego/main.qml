@@ -105,6 +105,38 @@ PageStackWindow {
                     z:32
                     opacity: 0.4
                 }
+
+                section {
+                    property: "category"
+                    criteria: ViewSection.FullString
+                    delegate: Item {
+                        width: parent.width
+                        height: sectionText.height
+
+                        Text {
+                            id: sectionText
+                            anchors.right: parent.right
+                            anchors.rightMargin: 10
+                            font.pixelSize: 30
+                            font.bold: true
+                            text: section
+                            color: "gray"
+                        }
+
+                        Rectangle {
+                            height: 1
+                            color: "gray"
+                            anchors.left: parent.left
+                            anchors.right: parent.right
+                            anchors.bottom: parent.bottom
+                        }
+                    }
+                }
+            }
+
+            FastScroll {
+                id: sectionScroller
+                listView: soundFileListView
             }
         }
     }

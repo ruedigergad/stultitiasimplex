@@ -19,14 +19,13 @@
 
 #include "soundfile.h"
 
-SoundFile::SoundFile(QObject *parent, SoundFileList *list) :
+SoundFile::SoundFile(QObject *parent) :
     QObject(parent)
 {
-    this->list = list;
 }
 
 SoundFile::~SoundFile() {
-    qDebug("Entering ~SoundFile::SoundFile()...");
+    qDebug("Entering SoundFile::~SoundFile()...");
     //FIXME: Clean up here..
 }
 
@@ -42,14 +41,24 @@ SoundFileList *SoundFile::getList(){
     return list;
 }
 
+QString SoundFile::getCategory(){
+    return category;
+}
+
 void SoundFile::setDescription(const QString desc){
     this->description = desc;
-    emit descriptionChanged();
+    emit descriptionChanged(this->description);
     emit changed();
 }
 
 void SoundFile::setFileName(const QString name){
     this->fileName = name;
-    emit fileNameChanged();
+    emit fileNameChanged(this->fileName);
+    emit changed();
+}
+
+void SoundFile::setCategory(const QString category){
+    this->category = category;
+    emit categoryChanged(this->category);
     emit changed();
 }

@@ -151,4 +151,8 @@ unix:DEFINES += UNIX
 OTHER_FILES += \
     res/meego/usr/share/icons/hicolor/64x64/apps/stultitiasimplex.png \
     res/meego/usr/share/applications/stultitiasimplex.desktop \
-    qml/meego/main.qml
+    qml/meego/main.qml \
+    qml/meego/FastScroll.qml \
+    qml/meego/FastScrollStyle.qml \
+    qml/meego/FastScroll.js \
+
