@@ -32,6 +32,7 @@ SOURCES += \
     src/io/audio/audioplayer.cpp \
     src/io/audio/abstractaudioplayerbackend.cpp \
     src/io/audio/abstractaudiorecorderbackend.cpp \
+    src/qml/qmlaudioplayer.cpp
 
 
 unix:SOURCES += \
@@ -56,6 +57,7 @@ HEADERS += \
     src/io/audio/audioplayer.h \
     src/io/audio/abstractaudioplayerbackend.h \
     src/io/audio/abstractaudiorecorderbackend.h \
+    src/qml/qmlaudioplayer.h
 
 
 unix:HEADERS += \
