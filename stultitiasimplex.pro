@@ -136,3 +136,7 @@ exists($$QMAKE_INCDIR_QT"/../applauncherd/MDeclarativeCache"): {
 }
 
 unix:DEFINES += UNIX
+
+OTHER_FILES += \
+    res/meego/usr/share/icons/hicolor/64x64/apps/stultitiasimplex.png \
+    res/meego/usr/share/applications/stultitiasimplex.desktop \
