@@ -37,6 +37,7 @@ signals:
     
 public slots:
     void play(QString fileName);
+    void abort();
 
 private:
     AbstractAudioPlayerBackend *backend;

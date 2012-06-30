@@ -51,3 +51,7 @@ void QmlAudioPlayer::play(QString fileName){
     emit started(fileName);
     backend->play(fileName);
 }
+
+void QmlAudioPlayer::abort(){
+    backend->abortPlay();
+}
