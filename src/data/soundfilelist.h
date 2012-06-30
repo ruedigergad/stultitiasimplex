@@ -48,7 +48,6 @@ private:
     QList<SoundFile *> *soundFiles;
     void readFromCsv(QString filename);
     void writeToCsv(QString filename);
-    QString preparePath();
 };
 
 #endif // SOUNDFILELIST_H
