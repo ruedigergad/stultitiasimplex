@@ -19,6 +19,7 @@
 
 import QtQuick 1.1
 import com.nokia.meego 1.0
+import stultitiasimplex 1.0
 
 PageStackWindow {
     id: appWindow
@@ -27,5 +28,9 @@ PageStackWindow {
 
     Page {
         id: mainPage
+    }
+
+    SoundFileList{
+        id: soundFileList
     }
 }

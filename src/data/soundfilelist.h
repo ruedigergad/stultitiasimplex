@@ -1,5 +1,5 @@
 /*
- *  Copyright 2010 Ruediger Gad
+ *  Copyright 2010, 2012 Ruediger Gad
  *
  *  This file is part of StultitiaSimplex.
  *
@@ -21,14 +21,22 @@
 #define SOUNDFILELIST_H
 
 #include <QObject>
+#include <QAbstractListModel>
 #include "soundfile.h"
 
 class SoundFile;
 
-class SoundFileList : public QObject
+class SoundFileList : public QAbstractListModel
 {
     Q_OBJECT
+    // Needed to make SectionScroller happy.
+    Q_PROPERTY(int count READ rowCount)
 public:
+    enum SoundFileRoles {
+        DescriptionRole = Qt::UserRole + 1,
+        FileNameRole = Qt::UserRole + 2
+    };
+
     explicit SoundFileList(QObject *parent = 0);
     ~SoundFileList();
 
@@ -36,6 +44,13 @@ public:
     const QList<SoundFile *> *getList();
     void move(int from, int to);
     void remove(SoundFile *file);
+
+    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
+    Q_INVOKABLE int rowCount(const QModelIndex &parent = QModelIndex()) const;
+
+    Q_INVOKABLE SoundFile* at(int index);
+    // Needed to make SectionScroller happy.
+    Q_INVOKABLE SoundFile* get(int index) { return at(index); }
 
 signals:
     void changed();

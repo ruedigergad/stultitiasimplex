@@ -1,5 +1,5 @@
 /*
- *  Copyright 2010 Ruediger Gad
+ *  Copyright 2010, 2012 Ruediger Gad
  *
  *  This file is part of StultitiaSimplex.
  *
@@ -27,7 +27,21 @@
 #include "src/constants.h"
 
 SoundFileList::SoundFileList(QObject *parent) :
-    QObject(parent){
+    QAbstractListModel(parent){
+    qDebug("SoundFileList constructor...");
+
+    QHash<int, QByteArray> roles;
+    roles[DescriptionRole] = "description";
+    roles[FileNameRole] = "fileName";
+    /*
+     * Needed to make SectionScroller happy.
+     * Take care to give the property used for naming the
+     * section in the ListView the same name as in the
+     * model element class (here Entry, see entry.h).
+     */
+//    roles[CategoryRole] = "category";
+    setRoleNames(roles);
+
     soundFiles = new QList<SoundFile *>();
 
     readFromCsv(Constants::SOUNDLIST_FILE);
@@ -71,9 +85,11 @@ void SoundFileList::move(int from, int to){
 }
 
 void SoundFileList::readFromCsv(QString filename){
+    qDebug("Reading sound file list.");
     QFile file(filename);
 
     if(file.open(QFile::ReadOnly)){
+        qDebug("Success opening list file for reading.");
         QTextStream stream(& file);
 
         QString data = stream.readLine();
@@ -90,6 +106,7 @@ void SoundFileList::readFromCsv(QString filename){
         }
 
         file.close();
+        qDebug("Finished reading. List size is: %d", rowCount());
     }
 }
 
@@ -105,9 +122,11 @@ void SoundFileList::save(){
 }
 
 void SoundFileList::writeToCsv(QString filename){
+    qDebug("Writing list to file.");
     QFile file(filename);
 
     if(file.open(QFile::WriteOnly)){
+        qDebug("Success opening file for writing.");
         QTextStream stream(& file);
 
         QList<SoundFile *>::iterator iter;
@@ -119,5 +138,26 @@ void SoundFileList::writeToCsv(QString filename){
         stream.flush();
         file.flush();
         file.close();
+        qDebug("Finished writing list to file.");
     }
+}
+
+SoundFile* SoundFileList::at(int index){
+    return soundFiles->at(index);
+}
+
+QVariant SoundFileList::data(const QModelIndex &index, int role) const{
+    if (index.row() < 0 || index.row() > soundFiles->count())
+        return QVariant();
+
+    SoundFile *file = soundFiles->at(index.row());
+    if(role == DescriptionRole)
+        return file->getDescription();
+    else if (role == FileNameRole)
+        return file->getFileName();
+    return QVariant();
+}
+
+int SoundFileList::rowCount(const QModelIndex &/*parent*/) const{
+    return soundFiles->count();
 }

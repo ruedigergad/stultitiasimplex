@@ -23,6 +23,7 @@
 #include <applauncherd/MDeclarativeCache>
 #include <QtDeclarative>
 #include "src/data/soundfile.h"
+#include "src/data/soundfilelist.h"
 #else
 #include "src/ui/mainwindow.h"
 #endif
@@ -35,7 +36,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     QDeclarativeView *view = MDeclarativeCache::qDeclarativeView();
 
     qmlRegisterType<SoundFile>("stultitiasimplex", 1, 0, "SoundFile");
-//    qmlRegisterType<ToDoStorage>("qtodo", 1, 0, "ToDoStorage");
+    qmlRegisterType<SoundFileList>("stultitiasimplex", 1, 0, "SoundFileList");
 
     view->setSource(QUrl("/opt/stultitiasimplex/qml/main.qml"));
     view->showFullScreen();
