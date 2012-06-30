@@ -19,19 +19,38 @@
 
 #include <QtGui/QApplication>
 
-#ifndef MEEGO_EDITION_HARMATTAN
+#ifdef MEEGO_EDITION_HARMATTAN
+#include <applauncherd/MDeclarativeCache>
+#include <QtDeclarative>
+#else
 #include "src/ui/mainwindow.h"
 #endif
 
+
+#ifdef MEEGO_EDITION_HARMATTAN
+Q_DECL_EXPORT int main(int argc, char *argv[])
+{
+    QApplication *app = MDeclarativeCache::qApplication(argc, argv);
+    QDeclarativeView *view = MDeclarativeCache::qDeclarativeView();
+
+//    qmlRegisterType<NodeListModel>("qtodo", 1, 0, "NodeListModel");
+//    qmlRegisterType<ToDoStorage>("qtodo", 1, 0, "ToDoStorage");
+
+    view->setSource(QUrl("/opt/stultitiasimplex/qml/main.qml"));
+    view->showFullScreen();
+
+//    view.setResizeMode(QDeclarativeView::SizeRootObjectToView);
+//    view.resize(500, 400);
+//    view.show();
+    return app->exec();
+}
+#else
 int main(int argc, char *argv[])
 {
-#ifdef MEEGO_EDITION_HARMATTAN
-    return 0;
-#else
     QApplication a(argc, argv);
     MainWindow w;
     w.show();
 
     return a.exec();
-#endif
 }
+#endif

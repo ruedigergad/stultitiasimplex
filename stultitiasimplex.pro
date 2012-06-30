@@ -90,11 +90,20 @@ exists($$QMAKE_INCDIR_QT"/../applauncherd/MDeclarativeCache"): {
 
     DEFINES += MEEGO_EDITION_HARMATTAN NFC_ENABLED
 
+    QT += declarative
+
+    # enable booster
+    CONFIG += qdeclarative-boostable
+    QMAKE_CXXFLAGS += -fPIC -fvisibility=hidden -fvisibility-inlines-hidden
+    QMAKE_LFLAGS += -pie -rdynamic
+
     target.path = /opt/stultitiasimplex/bin
     desktop.files += res/meego/usr/share/applications/stultitiasimplex.desktop
     desktop.path = /usr/share/applications
     icon.files += res/meego/usr/share/icons/hicolor/64x64/apps/stultitiasimplex.png
     icon.path = /usr/share/icons/hicolor/64x64/apps
+    qml.files += qml/meego/*
+    qml.path = /opt/stultitiasimplex/qml
 
     INSTALLS += target desktop icon
 } else:simulator {
@@ -140,3 +149,4 @@ unix:DEFINES += UNIX
 OTHER_FILES += \
     res/meego/usr/share/icons/hicolor/64x64/apps/stultitiasimplex.png \
     res/meego/usr/share/applications/stultitiasimplex.desktop \
+    qml/meego/main.qml
