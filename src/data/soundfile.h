@@ -28,6 +28,10 @@ class SoundFileList;
 class SoundFile : public QObject
 {
     Q_OBJECT
+
+    Q_PROPERTY(QString description READ getDescription WRITE setDescription NOTIFY descriptionChanged)
+    Q_PROPERTY(QString fileName READ getFileName WRITE setFileName NOTIFY fileNameChanged)
+
 public:
     explicit SoundFile(QObject *parent = 0, SoundFileList *list = 0);
     ~SoundFile();
@@ -41,6 +45,8 @@ public:
 
 signals:
     void changed();
+    QString descriptionChanged();
+    QString fileNameChanged();
 
 public slots:
 

@@ -44,10 +44,12 @@ SoundFileList *SoundFile::getList(){
 
 void SoundFile::setDescription(const QString desc){
     this->description = desc;
+    emit descriptionChanged();
     emit changed();
 }
 
 void SoundFile::setFileName(const QString name){
     this->fileName = name;
+    emit fileNameChanged();
     emit changed();
 }
