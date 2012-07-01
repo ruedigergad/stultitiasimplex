@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>svg/icon_text_card.png</file>
+        <file>svg/icon_text_card_white.png</file>
     </qresource>
 </RCC>
