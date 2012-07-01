@@ -38,7 +38,6 @@ PageStackWindow {
                 height: 72
                 color: "#0c61a8"
                 anchors{left: parent.left; right: parent.right; top: parent.top}
-                z: 48
 
                 Text {
                     text: "Stultitia Simplex"
@@ -57,7 +56,7 @@ PageStackWindow {
                 clip: true
 
                 delegate: Item{
-                    anchors{left: parent.left; right: parent.right}
+                    anchors{left: parent.left; leftMargin: 10; right: parent.right}
                     height: descText.height
 
                     Rectangle{
@@ -71,7 +70,7 @@ PageStackWindow {
                         anchors{left: parent.left; right: parent.right}
                         text: description
                         font.pixelSize: 40
-                        horizontalAlignment: Text.AlignHCenter
+                        horizontalAlignment: Text.AlignLeft
                         wrapMode: Text.WordWrap
                     }
 
@@ -96,13 +95,6 @@ PageStackWindow {
                     id: highlightRectangle
                     color: "gray"
                     width: parent.width
-                    /*
-                     * Set z to a seemingly insane high value. For some strange/unknown reason the
-                     * the highlight is not shown at all with z=0. For z=1 the highligh is shown but
-                     * disappears for parts that had been at least once out of the screen bounds
-                     * (i.e. had not been visible in the list). Hence, just in case set z=32.
-                     */
-                    z:32
                     opacity: 0.4
                 }
 
@@ -117,7 +109,7 @@ PageStackWindow {
                             id: sectionText
                             anchors.right: parent.right
                             anchors.rightMargin: 10
-                            font.pixelSize: 30
+                            font.pixelSize: 35
                             font.bold: true
                             text: section
                             color: "gray"

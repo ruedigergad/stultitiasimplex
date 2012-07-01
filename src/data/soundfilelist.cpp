@@ -160,6 +160,9 @@ QVariant SoundFileList::data(const QModelIndex &index, int role) const{
         return file->getDescription();
     else if (role == FileNameRole)
         return file->getFileName();
+    else if (role == CategoryRole){
+        return file->getCategory();
+    }
     return QVariant();
 }
 
