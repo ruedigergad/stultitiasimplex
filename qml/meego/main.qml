@@ -47,83 +47,13 @@ PageStackWindow {
                 }
             }
 
-            ListView{
+            SoundFileListView{
                 id: soundFileListView
 
                 model: soundFileList
 
                 anchors{top: header.bottom; left: parent.left; right: parent.right; bottom: parent.bottom}
                 clip: true
-
-                delegate: Item{
-                    anchors{left: parent.left; leftMargin: 10; right: parent.right}
-                    height: descText.height
-
-                    Rectangle{
-                        anchors.fill: parent
-                        color: "black"
-                        opacity: delegateMouseArea.pressed ? 0.5 : 0
-                    }
-
-                    Text{
-                        id: descText
-                        anchors{left: parent.left; right: parent.right}
-                        text: description
-                        font.pixelSize: 40
-                        horizontalAlignment: Text.AlignLeft
-                        wrapMode: Text.WordWrap
-                    }
-
-                    MouseArea{
-                        id: delegateMouseArea
-                        anchors.fill: parent
-
-                        onClicked: {
-                            soundFileListView.currentIndex = index
-                        }
-
-                        onDoubleClicked: {
-                            console.log("Selected: " + description)
-                            console.log("File name: " + fileName)
-                            player.play(fileName)
-                        }
-                    }
-                }
-
-                highlightMoveDuration: 200
-                highlight: Rectangle {
-                    id: highlightRectangle
-                    color: "gray"
-                    width: parent.width
-                    opacity: 0.4
-                }
-
-                section {
-                    property: "category"
-                    criteria: ViewSection.FullString
-                    delegate: Item {
-                        width: parent.width
-                        height: sectionText.height
-
-                        Text {
-                            id: sectionText
-                            anchors.right: parent.right
-                            anchors.rightMargin: 10
-                            font.pixelSize: 35
-                            font.bold: true
-                            text: section
-                            color: "gray"
-                        }
-
-                        Rectangle {
-                            height: 1
-                            color: "gray"
-                            anchors.left: parent.left
-                            anchors.right: parent.right
-                            anchors.bottom: parent.bottom
-                        }
-                    }
-                }
             }
 
             FastScroll {
