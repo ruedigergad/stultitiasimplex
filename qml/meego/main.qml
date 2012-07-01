@@ -90,6 +90,10 @@ PageStackWindow {
         }
     }
 
+    AboutDialog{
+        id: aboutDialog
+    }
+
     ToolBarLayout {
         id: commonTools
 
