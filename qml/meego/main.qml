@@ -24,8 +24,41 @@ import stultitiasimplex 1.0
 PageStackWindow {
     id: appWindow
 
-    initialPage: MainPage{
+    initialPage: Page{
         tools: commonTools
+
+        Rectangle{
+            anchors.fill: parent
+            color: "lightgray"
+
+            Rectangle {
+                id: header
+                height: 72
+                color: "#0c61a8"
+                anchors{left: parent.left; right: parent.right; top: parent.top}
+
+                Text {
+                    text: "Stultitia Simplex"
+                    color: "white"
+                    font{pixelSize: 32; family: "Nokia Pure Text Light"}
+                    anchors{left: parent.left; leftMargin: 20; verticalCenter: parent.verticalCenter}
+                }
+            }
+
+            SoundFileListView{
+                id: soundFileListView
+
+                model: soundFileList
+
+                anchors{top: header.bottom; left: parent.left; right: parent.right; bottom: parent.bottom}
+                clip: true
+            }
+
+            FastScroll {
+                id: sectionScroller
+                listView: soundFileListView
+            }
+        }
     }
 
     SoundFileList{
@@ -71,17 +104,21 @@ PageStackWindow {
         ToolIcon {
             id: iconEdit
             platformIconId: "toolbar-edit"
+            enabled: soundFileListView.currentIndex > 0
+            opacity: enabled ? 1 : 0.5
             onClicked: {
                 console.log("Edit...")
             }
         }
 
-
         ToolIcon {
-            id: iconDelete
-            platformIconId: "toolbar-delete"
+            id: iconPlay
+            platformIconId: "toolbar-mediacontrol-play"
+            enabled: soundFileListView.currentIndex > 0
+            opacity: enabled ? 1 : 0.5
             onClicked: {
-                console.log("Delete...")
+                console.log("Play...")
+                player.play(soundFileList.at(soundFileListView.currentIndex).fileName)
             }
         }
 
