@@ -137,7 +137,13 @@ PageStackWindow {
             MenuItem {
                 text: "Record Sound"
                 onClicked: {
-                    nfcWriteDialog.open()
+                    console.log("Record...")
+                }
+            }
+            MenuItem {
+                text: "Settings"
+                onClicked: {
+                    console.log("Settings...")
                 }
             }
             MenuItem {
