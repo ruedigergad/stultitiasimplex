@@ -24,7 +24,9 @@ import stultitiasimplex 1.0
 PageStackWindow {
     id: appWindow
 
-    initialPage: MainPage{}
+    initialPage: MainPage{
+        tools: commonTools
+    }
 
     SoundFileList{
         id: soundFileList
@@ -52,6 +54,59 @@ PageStackWindow {
         onRejected: {
             console.log("Aborting playback.")
             player.abort()
+        }
+    }
+
+    ToolBarLayout {
+        id: commonTools
+
+        ToolIcon {
+            id: iconAdd
+            platformIconId: "toolbar-add"
+            onClicked: {
+                console.log("Add...")
+            }
+        }
+
+        ToolIcon {
+            id: iconEdit
+            platformIconId: "toolbar-edit"
+            onClicked: {
+                console.log("Edit...")
+            }
+        }
+
+
+        ToolIcon {
+            id: iconDelete
+            platformIconId: "toolbar-delete"
+            onClicked: {
+                console.log("Delete...")
+            }
+        }
+
+        ToolIcon {
+            id: iconMenu
+            platformIconId: "toolbar-view-menu"
+            anchors.right: parent === undefined ? undefined : parent.right
+            onClicked: myMenu.status === DialogStatus.Closed ? myMenu.open() : myMenu.close()
+        }
+    }
+
+    Menu {
+        id: myMenu
+
+        MenuLayout {
+            MenuItem {
+                text: "Record Sound"
+                onClicked: {
+                    nfcWriteDialog.open()
+                }
+            }
+            MenuItem {
+                text: "About"
+                onClicked: aboutDialog.open()
+            }
         }
     }
 }
