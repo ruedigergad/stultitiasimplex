@@ -104,7 +104,7 @@ PageStackWindow {
         ToolIcon {
             id: iconEdit
             platformIconId: "toolbar-edit"
-            enabled: soundFileListView.currentIndex > 0
+            enabled: soundFileListView.currentIndex >= 0
             opacity: enabled ? 1 : 0.5
             onClicked: {
                 console.log("Edit...")
@@ -114,7 +114,7 @@ PageStackWindow {
         ToolIcon {
             id: iconPlay
             platformIconId: "toolbar-mediacontrol-play"
-            enabled: soundFileListView.currentIndex > 0
+            enabled: soundFileListView.currentIndex >= 0
             opacity: enabled ? 1 : 0.5
             onClicked: {
                 console.log("Play...")
