@@ -156,5 +156,6 @@ OTHER_FILES += \
     qml/meego/FastScrollStyle.qml \
     qml/meego/FastScroll.js \
     qml/meego/SoundFileListView.qml \
-    qml/meego/AboutDialog.qml
+    qml/meego/AboutDialog.qml \
+    qml/meego/EditSoundFileSheet.qml
 

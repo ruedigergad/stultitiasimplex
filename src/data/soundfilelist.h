@@ -59,6 +59,7 @@ signals:
 
 public slots:
     void save();
+    void reset();
 
 private:
     QList<SoundFile *> *soundFiles;

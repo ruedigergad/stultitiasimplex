@@ -24,7 +24,10 @@ import stultitiasimplex 1.0
 PageStackWindow {
     id: appWindow
 
-    initialPage: Page{
+    initialPage: mainPage
+
+    Page{
+        id: mainPage
         tools: commonTools
 
         Rectangle{
@@ -63,6 +66,21 @@ PageStackWindow {
 
     SoundFileList{
         id: soundFileList
+
+        onChanged: {
+            /*
+             * Needed to make SectionScroller happy.
+             * First we set the list property of the SectionScroller.
+             * This is done here for the sake of completeness.
+             */
+            sectionScroller.listView = soundFileListView
+            /*
+             * Second and more important, we force a re-initialization
+             * of the SectionScroller. Note: the requirement to do this
+             * may be due to the way the model is set for the list here.
+             */
+            sectionScroller.listViewChanged()
+        }
     }
 
     QmlAudioPlayer{
@@ -94,6 +112,15 @@ PageStackWindow {
         id: aboutDialog
     }
 
+    EditSoundFileSheet{
+        id: editSoundFileSheet
+
+        onAccepted: {
+            soundFileList.save()
+            soundFileList.reset()
+        }
+    }
+
     ToolBarLayout {
         id: commonTools
 
@@ -102,6 +129,11 @@ PageStackWindow {
             platformIconId: "toolbar-add"
             onClicked: {
                 console.log("Add...")
+                editSoundFileSheet.category = ""
+                editSoundFileSheet.description = ""
+                editSoundFileSheet.fileName = ""
+                editSoundFileSheet.edit = false
+                editSoundFileSheet.open()
             }
         }
 
@@ -112,6 +144,12 @@ PageStackWindow {
             opacity: enabled ? 1 : 0.5
             onClicked: {
                 console.log("Edit...")
+                var itm = soundFileList.at(soundFileListView.currentIndex)
+                editSoundFileSheet.category = itm.category
+                editSoundFileSheet.description = itm.description
+                editSoundFileSheet.fileName = itm.fileName
+                editSoundFileSheet.edit = true
+                editSoundFileSheet.open()
             }
         }
 

@@ -122,6 +122,11 @@ void SoundFileList::remove(SoundFile *file){
     emit changed();
 }
 
+void SoundFileList::reset(){
+    QAbstractListModel::reset();
+    emit changed();
+}
+
 void SoundFileList::save(){
     writeToCsv(Constants::SOUNDLIST_FILE);
 }
