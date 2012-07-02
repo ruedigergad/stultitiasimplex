@@ -25,7 +25,7 @@ Sheet{
     anchors.fill: parent
     visualParent: mainPage
 
-    property alias category: categoryTextField.text
+    property alias category: categoryButton.text
     property alias description: descriptionTextField.text
     property alias fileName: fileNameButton.text
 
@@ -108,6 +108,8 @@ Sheet{
             anchors{top: parent.top; left: parent.left; right: parent.right; margins: 15}
 
             Row{
+                width: parent.width
+
                 Text{
                     text: "Description"
                     font.pixelSize: 30
@@ -118,15 +120,43 @@ Sheet{
             }
 
             Row{
+                id: categoryRow
+                width: parent.width
+
                 Text{
+                    id: categoryText
                     text: "Category"
                     font.pixelSize: 30
                 }
-                TextField{
-                    id: categoryTextField
+                Button{
+                    id: categoryButton
+                    width: categoryRow.width - categoryText.width - addCategoryButton.width
+                    onClicked: {
+                        categoryModel.clear()
+                        var alreadyAdded = []
+
+                        console.log("Already added: " + alreadyAdded)
+                        for(var i = 0; i < soundFileList.count; i++){
+                            var current = soundFileList.get(i).category
+                            if(alreadyAdded.indexOf(current) < 0){
+                                console.log("Adding: " + current)
+                                categoryModel.append({"category": current})
+                                alreadyAdded.push(current)
+                            }
+                        }
+
+                        categorySelectionDialog.open()
+                    }
+                }
+                ToolIcon{
+                    id: addCategoryButton
+                    platformIconId: "toolbar-add"
+                    onClicked: addCategoryDialog.open()
                 }
             }
             Row{
+                width: parent.width
+
                 Text{
                     text: "File Name"
                     font.pixelSize: 30
@@ -143,7 +173,6 @@ Sheet{
                             fileNameModel.append({"fileName": soundFiles[i]})
                         }
 
-                        fileNameSelectionDialog.model = fileNameModel
                         fileNameSelectionDialog.open()
                     }
                 }
@@ -158,8 +187,45 @@ Sheet{
     SelectionDialog {
         id: fileNameSelectionDialog
         titleText: "Select Sound File"
+        model: fileNameModel
         onAccepted: {
             fileName = fileNameModel.get(selectedIndex).fileName
+        }
+    }
+
+    ListModel {
+        id: categoryModel
+    }
+
+    SelectionDialog {
+        id: categorySelectionDialog
+        titleText: "Select Category"
+        model: categoryModel
+        onAccepted: {
+            category = categoryModel.get(selectedIndex).category
+        }
+    }
+
+    QueryDialog{
+        id: addCategoryDialog
+
+        titleText: "Add Category"
+
+        acceptButtonText: "OK"
+        rejectButtonText: "Cancel"
+
+        content: TextField{
+            id: newCategoryTextField
+            anchors.centerIn: parent
+        }
+
+        onAccepted: {
+            category = newCategoryTextField.text
+            newCategoryTextField.text = ""
+        }
+
+        onRejected: {
+            newCategoryTextField.text = ""
         }
     }
 }
