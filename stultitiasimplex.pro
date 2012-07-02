@@ -110,8 +110,10 @@ exists($$QMAKE_INCDIR_QT"/../applauncherd/MDeclarativeCache"): {
     icon.path = /usr/share/icons/hicolor/64x64/apps
     qml.files += qml/meego/*
     qml.path = /opt/stultitiasimplex/qml
+    splash.path = /opt/stultitiasimplex
+    splash.files += res/svg/splash.png
 
-    INSTALLS += target desktop icon qml
+    INSTALLS += target desktop icon qml splash
 } else:simulator {
     DEFINES += NFC_ENABLED
 } else:unix {
