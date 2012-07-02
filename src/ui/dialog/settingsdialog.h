@@ -34,10 +34,6 @@ public:
     static QString COLUMNS;
     static QString ROWS;
 
-    static QString VOLUME_OVERRIDE;
-    static QString VOLUME;
-
-
     explicit SettingsDialog(QWidget *parent = 0);
     ~SettingsDialog();
 

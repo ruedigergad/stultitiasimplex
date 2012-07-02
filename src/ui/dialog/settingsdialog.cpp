@@ -21,6 +21,7 @@
 
 #include "settingsdialog.h"
 #include "ui_settingsdialog.h"
+#include "src/constants.h"
 
 #ifdef Q_WS_X11
 #include "src/io/audio/pulseaudio/pa_utils.h"
@@ -28,9 +29,6 @@
 
 QString SettingsDialog::COLUMNS = "ui/columns";
 QString SettingsDialog::ROWS = "ui/rows";
-
-QString SettingsDialog::VOLUME = "sound/volume";
-QString SettingsDialog::VOLUME_OVERRIDE = "sound/volume_override";
 
 SettingsDialog::SettingsDialog(QWidget *parent) :
     QDialog(parent),
@@ -54,8 +52,8 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
 
 #if defined(Q_WS_X11) && ! defined(Q_WS_MAEMO_5)
     if(pa_available()){
-        ui->volumeOverrideCheckbox->setChecked(settings.value(SettingsDialog::VOLUME_OVERRIDE).toBool());
-        ui->volumeSpinBox->setValue(settings.value(SettingsDialog::VOLUME).toInt());
+        ui->volumeOverrideCheckbox->setChecked(settings.value(Constants::VOLUME_OVERRIDE).toBool());
+        ui->volumeSpinBox->setValue(settings.value(Constants::VOLUME).toInt());
     }else{
         ui->volumeLabel->close();
         ui->volumeOverrideCheckbox->close();
@@ -67,8 +65,8 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
 #endif
 
 #ifdef Q_WS_MAEMO_5
-    ui->volumeOverrideCheckbox->setChecked(settings.value(SettingsDialog::VOLUME_OVERRIDE).toBool());
-    ui->volumeSpinBox->setValue(settings.value(SettingsDialog::VOLUME).toInt());
+    ui->volumeOverrideCheckbox->setChecked(settings.value(Constants::VOLUME_OVERRIDE).toBool());
+    ui->volumeSpinBox->setValue(settings.value(Constants::VOLUME).toInt());
 #endif
 }
 
@@ -83,8 +81,8 @@ void SettingsDialog::accept(){
     settings.setValue(SettingsDialog::COLUMNS, ui->columnSpinBox->value());
     settings.setValue(SettingsDialog::ROWS, ui->rowSpinBox->value());
 
-    settings.setValue(SettingsDialog::VOLUME_OVERRIDE, ui->volumeOverrideCheckbox->checkState());
-    settings.setValue(SettingsDialog::VOLUME, ui->volumeSpinBox->value());
+    settings.setValue(Constants::VOLUME_OVERRIDE, ui->volumeOverrideCheckbox->checkState());
+    settings.setValue(Constants::VOLUME, ui->volumeSpinBox->value());
 
     settings.sync();
 

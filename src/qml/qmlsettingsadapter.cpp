@@ -1,5 +1,5 @@
 /*
- *  Copyright 2010 Ruediger Gad
+ *  Copyright 2012 Ruediger Gad
  *
  *  This file is part of StultitiaSimplex.
  *
@@ -17,25 +17,29 @@
  *  along with StultitiaSimplex.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <QDir>
+#include "qmlsettingsadapter.h"
+#include <QSettings>
 
-#include "constants.h"
-
-
-QString Constants::CSV_SEPARATOR = ";";
-
-#ifndef Q_WS_MAEMO_5
-QString Constants::WORK_DIR = QDir::home().absolutePath() + "/.stultitiaSimplex";
-#else
-QString Constants::WORK_DIR = QDir::home().absolutePath() + "/MyDocs/stultitiaSimplex";
-#endif
-QString Constants::SOUNDLIST_FILE = WORK_DIR + "/buttons.csv";
-QString Constants::SOUNDS_DIR = WORK_DIR + "/sounds";
-QString Constants::VERSION = "1.3.1";
-
-QString Constants::VOLUME = "sound/volume";
-QString Constants::VOLUME_OVERRIDE = "sound/volume_override";
-
-Constants::Constants()
+QmlSettingsAdapter::QmlSettingsAdapter(QObject *parent) :
+    QObject(parent)
 {
+}
+
+QVariant QmlSettingsAdapter::get(QString key){
+    QSettings settings;
+    return settings.value(key);
+}
+
+bool QmlSettingsAdapter::getBool(QString key){
+    return get(key).toBool();
+}
+
+int QmlSettingsAdapter::getInt(QString key){
+    return get(key).toInt();
+}
+
+void QmlSettingsAdapter::set(QString key, QVariant val){
+    QSettings settings;
+    settings.setValue(key, val);
+    settings.sync();
 }

@@ -33,7 +33,8 @@ SOURCES += \
     src/io/audio/abstractaudioplayerbackend.cpp \
     src/io/audio/abstractaudiorecorderbackend.cpp \
     src/qml/qmlaudioplayer.cpp \
-    src/qml/filesystemhelper.cpp
+    src/qml/filesystemhelper.cpp \
+    src/qml/qmlsettingsadapter.cpp
 
 
 unix:SOURCES += \
@@ -59,7 +60,8 @@ HEADERS += \
     src/io/audio/abstractaudioplayerbackend.h \
     src/io/audio/abstractaudiorecorderbackend.h \
     src/qml/qmlaudioplayer.h \
-    src/qml/filesystemhelper.h
+    src/qml/filesystemhelper.h \
+    src/qml/qmlsettingsadapter.h
 
 
 unix:HEADERS += \

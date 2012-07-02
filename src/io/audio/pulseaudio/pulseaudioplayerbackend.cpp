@@ -25,6 +25,7 @@
 
 #include <pulse/simple.h>
 #include <pulse/error.h>
+#include "src/constants.h"
 
 #include <QSettings>
 
@@ -101,18 +102,10 @@ finish:
 void PulseAudioPlayerBackend::setVolume(){
     QSettings settings;
 
-#ifdef MEEGO_EDITION_HARMATTAN
-    volumeOverride = false;
-#else
-    volumeOverride = settings.value(SettingsDialog::VOLUME_OVERRIDE).toBool();
-#endif
+    volumeOverride = settings.value(Constants::VOLUME_OVERRIDE, false).toBool();
 
     if(volumeOverride){
-#ifdef MEEGO_EDITION_HARMATTAN
-        int vol = 0;
-#else
-        int vol = settings.value(SettingsDialog::VOLUME).toInt();
-#endif
+        int vol = settings.value(Constants::VOLUME, 0).toInt();
         pa_volume_t newVolume = pa_sw_volume_from_linear(((double) vol)/100.0
                                                          );
 #ifdef Q_WS_MAEMO_5

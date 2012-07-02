@@ -1,5 +1,5 @@
 /*
- *  Copyright 2010 Ruediger Gad
+ *  Copyright 2012 Ruediger Gad
  *
  *  This file is part of StultitiaSimplex.
  *
@@ -17,25 +17,27 @@
  *  along with StultitiaSimplex.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <QDir>
+#ifndef QMLSETTINGSADAPTER_H
+#define QMLSETTINGSADAPTER_H
 
-#include "constants.h"
+#include <QObject>
+#include <QVariant>
 
-
-QString Constants::CSV_SEPARATOR = ";";
-
-#ifndef Q_WS_MAEMO_5
-QString Constants::WORK_DIR = QDir::home().absolutePath() + "/.stultitiaSimplex";
-#else
-QString Constants::WORK_DIR = QDir::home().absolutePath() + "/MyDocs/stultitiaSimplex";
-#endif
-QString Constants::SOUNDLIST_FILE = WORK_DIR + "/buttons.csv";
-QString Constants::SOUNDS_DIR = WORK_DIR + "/sounds";
-QString Constants::VERSION = "1.3.1";
-
-QString Constants::VOLUME = "sound/volume";
-QString Constants::VOLUME_OVERRIDE = "sound/volume_override";
-
-Constants::Constants()
+class QmlSettingsAdapter : public QObject
 {
-}
+    Q_OBJECT
+public:
+    explicit QmlSettingsAdapter(QObject *parent = 0);
+
+    Q_INVOKABLE QVariant get(QString key);
+    Q_INVOKABLE int getInt(QString key);
+    Q_INVOKABLE bool getBool(QString key);
+    
+signals:
+    
+public slots:
+    void set(QString key, QVariant val);
+    
+};
+
+#endif // QMLSETTINGSADAPTER_H

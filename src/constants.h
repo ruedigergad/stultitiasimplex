@@ -32,6 +32,9 @@ public:
     static QString SOUNDLIST_FILE;
     static QString SOUNDS_DIR;
     static QString VERSION;
+
+    static QString VOLUME_OVERRIDE;
+    static QString VOLUME;
 };
 
 #endif // CONSTANTS_H
