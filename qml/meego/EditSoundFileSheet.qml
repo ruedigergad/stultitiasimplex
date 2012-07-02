@@ -27,7 +27,7 @@ Sheet{
 
     property alias category: categoryTextField.text
     property alias description: descriptionTextField.text
-    property alias fileName: fileNameTextField.text
+    property alias fileName: fileNameButton.text
 
     property bool edit: false
 
@@ -131,10 +131,35 @@ Sheet{
                     text: "File Name"
                     font.pixelSize: 30
                 }
-                TextField{
-                    id: fileNameTextField
+                Button{
+                    id: fileNameButton
+
+                    onClicked: {
+                        var soundFiles = fileSystemHelper.getWavFiles().split("/")
+                        console.log(soundFiles)
+
+                        fileNameModel.clear()
+                        for(var i = 0; i < soundFiles.length; i++){
+                            fileNameModel.append({"fileName": soundFiles[i]})
+                        }
+
+                        fileNameSelectionDialog.model = fileNameModel
+                        fileNameSelectionDialog.open()
+                    }
                 }
             }
+        }
+    }
+
+    ListModel{
+        id: fileNameModel
+    }
+
+    SelectionDialog {
+        id: fileNameSelectionDialog
+        titleText: "Select Sound File"
+        onAccepted: {
+            fileName = fileNameModel.get(selectedIndex).fileName
         }
     }
 }

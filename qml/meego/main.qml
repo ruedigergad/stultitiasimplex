@@ -89,6 +89,10 @@ PageStackWindow {
         onFinished: abortDialog.close()
     }
 
+    FileSystemHelper{
+        id: fileSystemHelper
+    }
+
     Dialog{
         id: abortDialog
 

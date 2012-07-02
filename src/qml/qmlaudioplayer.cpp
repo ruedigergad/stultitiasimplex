@@ -18,6 +18,8 @@
  */
 
 #include "qmlaudioplayer.h"
+#include <QDebug>
+#include <QDir>
 
 #ifdef UNIX
 #include "src/io/audio/pulseaudio/pulseaudioplayerbackend.h"
@@ -48,8 +50,12 @@ QmlAudioPlayer::~QmlAudioPlayer(){
 
 void QmlAudioPlayer::play(QString fileName){
     qDebug("Starting playback...");
-    emit started(fileName);
-    backend->play(fileName);
+
+    QString path = QDir::homePath() + "/.stultitiaSimplex/sounds/" + fileName;
+    qDebug() << "Playing file: " << path;
+
+    emit started(path);
+    backend->play(path);
 }
 
 void QmlAudioPlayer::abort(){

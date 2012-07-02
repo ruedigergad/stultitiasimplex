@@ -25,6 +25,7 @@
 #include "src/data/soundfile.h"
 #include "src/data/soundfilelist.h"
 #include "src/qml/qmlaudioplayer.h"
+#include "src/qml/filesystemhelper.h"
 #else
 #include "src/ui/mainwindow.h"
 #endif
@@ -39,6 +40,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     qmlRegisterType<SoundFile>("stultitiasimplex", 1, 0, "SoundFile");
     qmlRegisterType<SoundFileList>("stultitiasimplex", 1, 0, "SoundFileList");
     qmlRegisterType<QmlAudioPlayer>("stultitiasimplex", 1, 0, "QmlAudioPlayer");
+    qmlRegisterType<FileSystemHelper>("stultitiasimplex", 1, 0, "FileSystemHelper");
 
     view->setSource(QUrl("/opt/stultitiasimplex/qml/main.qml"));
     view->showFullScreen();
