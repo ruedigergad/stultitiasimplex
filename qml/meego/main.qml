@@ -125,6 +125,14 @@ PageStackWindow {
         }
     }
 
+    SettingsSheet{
+        id: settingsSheet
+    }
+
+    QmlSettingsAdapter{
+        id: qmlSettingsAdapter
+    }
+
     ToolBarLayout {
         id: commonTools
 
@@ -190,6 +198,7 @@ PageStackWindow {
                 text: "Settings"
                 onClicked: {
                     console.log("Settings...")
+                    settingsSheet.open()
                 }
             }
             MenuItem {
