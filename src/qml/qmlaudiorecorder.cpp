@@ -17,24 +17,9 @@
  *  along with StultitiaSimplex.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef FILESYSTEMHELPER_H
-#define FILESYSTEMHELPER_H
+#include "qmlaudiorecorder.h"
 
-#include <QObject>
-#include <QStringList>
-
-class FileSystemHelper : public QObject
+QmlAudioRecorder::QmlAudioRecorder(QObject *parent) :
+    QObject(parent)
 {
-    Q_OBJECT
-public:
-    explicit FileSystemHelper(QObject *parent = 0);
-
-    Q_INVOKABLE QString getWavFiles();
-    
-signals:
-    
-public slots:
-    
-};
-
-#endif // FILESYSTEMHELPER_H
+}

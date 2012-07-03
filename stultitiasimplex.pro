@@ -35,7 +35,8 @@ SOURCES += \
     src/qml/qmlaudioplayer.cpp \
     src/qml/filesystemhelper.cpp \
     src/qml/qmlsettingsadapter.cpp \
-    src/qml/soundfilelistsortfilterproxymodel.cpp
+    src/qml/soundfilelistsortfilterproxymodel.cpp \
+    src/qml/qmlaudiorecorder.cpp
 
 
 unix:SOURCES += \
@@ -63,7 +64,8 @@ HEADERS += \
     src/qml/qmlaudioplayer.h \
     src/qml/filesystemhelper.h \
     src/qml/qmlsettingsadapter.h \
-    src/qml/soundfilelistsortfilterproxymodel.h
+    src/qml/soundfilelistsortfilterproxymodel.h \
+    src/qml/qmlaudiorecorder.h
 
 
 unix:HEADERS += \
