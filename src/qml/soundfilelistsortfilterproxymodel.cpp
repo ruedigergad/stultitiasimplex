@@ -41,3 +41,12 @@ bool SoundFileListSortFilterProxyModel::lessThan(const QModelIndex &left, const 
     // Else sort by category
     return QString::localeAwareCompare(leftCategory.toString(), righCategory.toString()) < 0;
 }
+
+SoundFile* SoundFileListSortFilterProxyModel::get(int index){
+    QModelIndex idx = this->index(index, 0);
+    QModelIndex srcIdx = mapToSource(idx);
+
+    return (srcIdx.row() >= 0 && srcIdx.row() < sourceModel()->rowCount())
+            ? soundFileList->get(srcIdx.row())
+            : soundFileList->get(index);
+}

@@ -19,7 +19,7 @@ public:
     ~SoundFileListSortFilterProxyModel();
 
     // Needed to make SectionScroller happy.
-    Q_INVOKABLE SoundFile* get(int index) { return soundFileList->get(index); }
+    Q_INVOKABLE SoundFile* get(int index);
     Q_INVOKABLE int rowCount(const QModelIndex &parent = QModelIndex()) const {
         return soundFileList->rowCount(parent);
     }
