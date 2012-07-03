@@ -22,10 +22,10 @@
      id="defs4" />
   <sodipodi:namedview
      id="base"
-     pagecolor="#000000"
+     pagecolor="#ffa500"
      bordercolor="#666666"
      borderopacity="1.0"
-     inkscape:pageopacity="0.47058824"
+     inkscape:pageopacity="0.62745098"
      inkscape:pageshadow="2"
      inkscape:zoom="0.35"
      inkscape:cx="16.428571"
@@ -33,8 +33,8 @@
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1017"
-     inkscape:window-height="608"
+     inkscape:window-width="1184"
+     inkscape:window-height="654"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="0" />
@@ -57,7 +57,7 @@
      transform="translate(0,-572.36218)">
     <text
        xml:space="preserve"
-       style="font-size:322.55841063999997687px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#4d4d4d;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Terminal Bold"
+       style="font-size:322.55841063999997687px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#cccccc;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Terminal Bold"
        x="-1033.8151"
        y="442.73947"
        id="text2993"
@@ -67,10 +67,10 @@
          id="tspan2995"
          x="-1033.8151"
          y="442.73947"
-         style="font-size:322.55841063999997687px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#4d4d4d;fill-opacity:1;font-family:Utopia;-inkscape-font-specification:Utopia">?</tspan></text>
+         style="font-size:322.55841063999997687px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#cccccc;fill-opacity:1;font-family:Utopia;-inkscape-font-specification:Utopia">?</tspan></text>
     <text
        xml:space="preserve"
-       style="font-size:322.55841063999997687px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#4d4d4d;fill-opacity:1;stroke:none;font-family:Utopia;-inkscape-font-specification:Utopia"
+       style="font-size:322.55841063999997687px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#cccccc;fill-opacity:1;stroke:none;font-family:Utopia;-inkscape-font-specification:Utopia"
        x="-930.3609"
        y="635.43866"
        id="text3001"
