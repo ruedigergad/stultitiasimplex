@@ -17,30 +17,26 @@
  *  along with StultitiaSimplex.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef QMLAUDIORECORDER_H
-#define QMLAUDIORECORDER_H
+import QtQuick 1.1
+import com.nokia.meego 1.0
 
-#include <QObject>
-#include "src/io/audio/abstractaudiorecorderbackend.h"
+Dialog{
+    id: recordDialog
 
-class QmlAudioRecorder : public QObject
-{
-    Q_OBJECT
-public:
-    explicit QmlAudioRecorder(QObject *parent = 0);
-    
-signals:
-    void vuMeterValueUpdate(float value);
-    
-public slots:
-    void connectAudio(int index);
-    void disconnectAudio();
+    onStatusChanged:{
+        if(status === DialogStatus.Opening){
+            console.log("Connecting audio...")
+            recorder.connectAudio(0)
+        }else if(status === DialogStatus.Closing){
+            console.log("Disconnecting audio...")
+            recorder.disconnecAudio()
+        }
+    }
 
-    void startRecord(QString fileName);
-    void stopRecord();
-    
-private:
-    AbstractAudioRecorderBackend *backend;
-};
-
-#endif // QMLAUDIORECORDER_H
+    Connections{
+        target: recorder
+        onVuMeterValueUpdate: {
+            console.log("VU-meter value updated: " + value)
+        }
+    }
+}

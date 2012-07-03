@@ -168,5 +168,6 @@ OTHER_FILES += \
     qml/meego/SoundFileListView.qml \
     qml/meego/AboutDialog.qml \
     qml/meego/EditSoundFileSheet.qml \
-    qml/meego/SettingsSheet.qml
+    qml/meego/SettingsSheet.qml \
+    qml/meego/RecordDialog.qml
 

@@ -19,7 +19,45 @@
 
 #include "qmlaudiorecorder.h"
 
+#include "src/io/audio/pulseaudio/pa_utils.h"
+#include "src/io/audio/pulseaudio/pulseaudiorecordbackend.h"
+
 QmlAudioRecorder::QmlAudioRecorder(QObject *parent) :
     QObject(parent)
 {
+}
+
+void QmlAudioRecorder::connectAudio(int index){
+    disconnectAudio();
+
+    switch(index){
+    case 0:
+        backend = new PulseAudioRecordBackend("source.hw0");
+        break;
+    case 1:
+        backend = new PulseAudioRecordBackend("source.hw1");
+        break;
+    case 2:
+        backend = new PulseAudioRecordBackend("sink.hw0.monitor");
+        break;
+    default:
+        qDebug("Unknown source!");
+    }
+
+    connect(backend, SIGNAL(updateVuMeterSignal(float)), this, SIGNAL(vuMeterValueUpdate(float)), Qt::QueuedConnection);
+}
+
+void QmlAudioRecorder::disconnectAudio(){
+    if(backend != NULL){
+        delete backend;
+        backend = NULL;
+    }
+}
+
+void QmlAudioRecorder::startRecord(QString fileName){
+    backend->startRecording(fileName);
+}
+
+void QmlAudioRecorder::stopRecord(){
+    backend->stopRecording();
 }

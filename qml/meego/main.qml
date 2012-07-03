@@ -89,8 +89,16 @@ PageStackWindow {
         onFinished: abortDialog.close()
     }
 
+    QmlAudioRecorder{
+        id: recorder
+    }
+
     FileSystemHelper{
         id: fileSystemHelper
+    }
+
+    RecordDialog{
+        id: recordDialog
     }
 
     Dialog{
@@ -192,6 +200,7 @@ PageStackWindow {
                 text: "Record Sound"
                 onClicked: {
                     console.log("Record...")
+                    recordDialog.open()
                 }
             }
             MenuItem {
