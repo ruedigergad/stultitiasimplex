@@ -155,15 +155,16 @@
      transform="matrix(1.125,0,0,1.125,13,13)" />
   <g
      id="g3047"
-     transform="matrix(1.1081084,0,0,1.1081084,-6.177743,-4.3243336)">
+     transform="matrix(1.1081084,0,0,1.1081084,-6.177743,-4.3243336)"
+     style="fill:#ffffff">
     <text
        sodipodi:linespacing="125%"
        id="text3039"
        y="62.239998"
        x="19.542349"
-       style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#666666;fill-opacity:1;stroke:none;font-family:Utopia;-inkscape-font-specification:Utopia"
+       style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Utopia;-inkscape-font-specification:Utopia"
        xml:space="preserve"><tspan
-         style="font-size:64px;fill:#666666"
+         style="font-size:64px;fill:#ffffff"
          y="62.239998"
          x="19.542349"
          id="tspan3041"
@@ -173,9 +174,9 @@
        id="text3043"
        y="62.239998"
        x="44.113777"
-       style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#666666;fill-opacity:1;stroke:none;font-family:Utopia;-inkscape-font-specification:Utopia"
+       style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Utopia;-inkscape-font-specification:Utopia"
        xml:space="preserve"><tspan
-         style="font-size:64px;fill:#666666"
+         style="font-size:64px;fill:#ffffff"
          y="62.239998"
          x="44.113777"
          id="tspan3045"
