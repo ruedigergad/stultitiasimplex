@@ -35,7 +35,7 @@ Sheet{
         console.log("Accepted.")
         if(edit){
             console.log("Setting new values.")
-            var itm = soundFileList.at(soundFileListView.currentIndex)
+            var itm = soundFileList.get(soundFileListView.currentIndex)
             itm.category = category
             itm.description = description
             itm.fileName = fileName
