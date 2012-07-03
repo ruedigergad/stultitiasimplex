@@ -64,7 +64,7 @@ PageStackWindow {
         }
     }
 
-    SoundFileList{
+    SoundFileListSortFilterProxyModel{
         id: soundFileList
 
         onChanged: {
@@ -156,7 +156,7 @@ PageStackWindow {
             opacity: enabled ? 1 : 0.5
             onClicked: {
                 console.log("Edit...")
-                var itm = soundFileList.at(soundFileListView.currentIndex)
+                var itm = soundFileList.get(soundFileListView.currentIndex)
                 editSoundFileSheet.category = itm.category
                 editSoundFileSheet.description = itm.description
                 editSoundFileSheet.fileName = itm.fileName
@@ -172,7 +172,7 @@ PageStackWindow {
             opacity: enabled ? 1 : 0.5
             onClicked: {
                 console.log("Play...")
-                player.play(soundFileList.at(soundFileListView.currentIndex).fileName)
+                player.play(soundFileList.get(soundFileListView.currentIndex).fileName)
             }
         }
 

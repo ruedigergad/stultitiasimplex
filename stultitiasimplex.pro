@@ -34,7 +34,8 @@ SOURCES += \
     src/io/audio/abstractaudiorecorderbackend.cpp \
     src/qml/qmlaudioplayer.cpp \
     src/qml/filesystemhelper.cpp \
-    src/qml/qmlsettingsadapter.cpp
+    src/qml/qmlsettingsadapter.cpp \
+    src/qml/soundfilelistsortfilterproxymodel.cpp
 
 
 unix:SOURCES += \
@@ -61,7 +62,8 @@ HEADERS += \
     src/io/audio/abstractaudiorecorderbackend.h \
     src/qml/qmlaudioplayer.h \
     src/qml/filesystemhelper.h \
-    src/qml/qmlsettingsadapter.h
+    src/qml/qmlsettingsadapter.h \
+    src/qml/soundfilelistsortfilterproxymodel.h
 
 
 unix:HEADERS += \
