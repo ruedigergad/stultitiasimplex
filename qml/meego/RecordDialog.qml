@@ -109,6 +109,10 @@ QueryDialog{
 
             anchors.centerIn: parent
             width: parent.width
+
+            onTextChanged: {
+                startRecordButton.enabled = (text !== "")
+            }
         }
 
         ButtonRow{

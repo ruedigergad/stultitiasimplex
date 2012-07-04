@@ -131,10 +131,26 @@ PageStackWindow {
             soundFileList.save()
             soundFileList.reset()
         }
+
+        onStatusChanged: {
+            if(status === DialogStatus.Opening){
+                commonTools.enabled = false
+            }else if(status === DialogStatus.Closing){
+                commonTools.enabled = true
+            }
+        }
     }
 
     SettingsSheet{
         id: settingsSheet
+
+        onStatusChanged: {
+            if(status === DialogStatus.Opening){
+                commonTools.enabled = false
+            }else if(status === DialogStatus.Closing){
+                commonTools.enabled = true
+            }
+        }
     }
 
     QmlSettingsAdapter{
