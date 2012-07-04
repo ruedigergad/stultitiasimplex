@@ -103,16 +103,18 @@ Sheet{
 
         Column {
             id: sheetContent
-            spacing: 12
+            spacing: 15
 
             anchors{top: parent.top; left: parent.left; right: parent.right; margins: 15}
 
             Row{
                 width: parent.width
+                spacing: 10
 
                 Text{
                     text: "Description"
                     font.pixelSize: 30
+                    verticalAlignment: Text.AlignVCenter
                 }
                 TextArea{
                     id: descriptionTextField
@@ -122,11 +124,13 @@ Sheet{
             Row{
                 id: categoryRow
                 width: parent.width
+                spacing: 10
 
                 Text{
                     id: categoryText
                     text: "Category"
                     font.pixelSize: 30
+                    verticalAlignment: Text.AlignVCenter
                 }
                 Button{
                     id: categoryButton
@@ -156,10 +160,12 @@ Sheet{
             }
             Row{
                 width: parent.width
+                spacing: 10
 
                 Text{
                     text: "File Name"
                     font.pixelSize: 30
+                    verticalAlignment: Text.AlignVCenter
                 }
                 Button{
                     id: fileNameButton

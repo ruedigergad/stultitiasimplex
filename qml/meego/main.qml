@@ -163,6 +163,7 @@ PageStackWindow {
         ToolIcon {
             id: iconAdd
             platformIconId: "toolbar-add"
+            opacity: enabled ? 1 : 0.5
             onClicked: {
                 console.log("Add...")
                 editSoundFileSheet.category = ""
@@ -203,6 +204,7 @@ PageStackWindow {
         ToolIcon {
             id: iconMenu
             platformIconId: "toolbar-view-menu"
+            opacity: enabled ? 1 : 0.5
             anchors.right: parent === undefined ? undefined : parent.right
             onClicked: myMenu.status === DialogStatus.Closed ? myMenu.open() : myMenu.close()
         }
