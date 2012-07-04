@@ -29,6 +29,7 @@ QueryDialog{
         if(status === DialogStatus.Opening){
             console.log("Connecting audio...")
             vuMeter.value = 0
+            fileName.text = ""
             recorder.connectAudio(0)
         }else if(status === DialogStatus.Closing){
             console.log("Disconnecting audio...")
@@ -109,10 +110,6 @@ QueryDialog{
 
             anchors.centerIn: parent
             width: parent.width
-
-            onTextChanged: {
-                startRecordButton.enabled = (text !== "")
-            }
         }
 
         ButtonRow{
