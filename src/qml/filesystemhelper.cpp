@@ -22,16 +22,17 @@
 #include <QDir>
 #include <QDebug>
 
+#include "src/constants.h"
+
 FileSystemHelper::FileSystemHelper(QObject *parent) :
     QObject(parent)
 {
 }
 
 QString FileSystemHelper::getWavFiles(){
-    QString path = QDir::homePath() + "/.stultitiaSimplex/sounds";
-    qDebug() << "Listing files in: " << path;
+    qDebug() << "Listing files in: " << Constants::SOUNDS_DIR;
 
-    QDir soundFileDir(path);
+    QDir soundFileDir(Constants::SOUNDS_DIR);
     soundFileDir.setFilter(QDir::Files);
     soundFileDir.setSorting(QDir::Name);
 

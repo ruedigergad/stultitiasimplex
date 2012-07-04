@@ -19,8 +19,11 @@
 
 #include "qmlaudiorecorder.h"
 
+#include "src/constants.h"
 #include "src/io/audio/pulseaudio/pa_utils.h"
 #include "src/io/audio/pulseaudio/pulseaudiorecordbackend.h"
+
+#include <QDebug>
 
 QmlAudioRecorder::QmlAudioRecorder(QObject *parent) :
     QObject(parent)
@@ -55,7 +58,9 @@ void QmlAudioRecorder::disconnectAudio(){
 }
 
 void QmlAudioRecorder::startRecord(QString fileName){
-    backend->startRecording(fileName);
+    QString path = Constants::SOUNDS_DIR + "/" + fileName;
+    qDebug() << "Recording: " << path;
+    backend->startRecording(path);
 }
 
 void QmlAudioRecorder::stopRecord(){
