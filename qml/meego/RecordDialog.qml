@@ -86,7 +86,7 @@ QueryDialog{
 
             border{
                 color: recording ? "red" : "green"
-                width: 3
+                width: 6
             }
 
             Rectangle{
