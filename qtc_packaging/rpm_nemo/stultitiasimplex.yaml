@@ -1,0 +1,25 @@
+Name: stultitiasimplex
+Summary: StultitiaSimplex
+Version: 1.3.1
+Release: 1
+Group: Applications/Productivity
+License: GPLv3
+URL: http://stultitiasimple.sourceforge.net/
+Sources:
+    - "%{name}_%{version}.tar.gz"
+Description:  
+ StultitiaSimplex is a simple sound board. It lets you record short sound snippets and provides an easily usable interface for quickly playing the recorded sounds.
+
+PkgConfigBR:
+    - QtCore >= 4.7.0
+    - QtGui
+    - qdeclarative-boostable
+    - libpulse
+    - libpulse-simple
+    - sndfile
+Configure: none
+Builder: qmake 
+Files:
+    - "/usr/share/applications/%{name}.desktop"
+    - "/opt/%{name}"
+    - "/usr/share/icons/hicolor/*/apps/%{name}.png"
