@@ -9,7 +9,7 @@ Name:       stultitiasimplex
 # << macros
 
 Summary:    StultitiaSimplex
-Version:    1.3.1
+Version:    2.0.0
 Release:    1
 Group:      Applications/Productivity
 License:    GPLv3
@@ -29,7 +29,7 @@ StultitiaSimplex is a simple sound board. It lets you record short sound snippet
 
 
 %prep
-%setup -q -n %{name}
+%setup -q -n %{name}-%{version}
 
 # >> setup
 # << setup

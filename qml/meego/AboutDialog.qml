@@ -27,7 +27,7 @@ Dialog {
       anchors.fill: parent
 
       Text {id: homepage;
-          text: "<a href=\"http://stultitiasimple.sourceforge.net/\" style=\"text-decoration:none; color:#78bfff\" >StultitiaSimplex - Version 1.3.1</a><br /><a href=\"http://stultitiasimple.sourceforge.net/\"><img src=\"qrc:/svg/icon_text_card_white.png\" /></a>";
+          text: "<a href=\"http://stultitiasimple.sourceforge.net/\" style=\"text-decoration:none; color:#78bfff\" >StultitiaSimplex - Version 2.0.0</a><br /><a href=\"http://stultitiasimple.sourceforge.net/\"><img src=\"qrc:/svg/icon_text_card_white.png\" /></a>";
           textFormat: Text.RichText;
           onLinkActivated: { Qt.openUrlExternally(link); }
           font.pixelSize: 25; horizontalAlignment: Text.AlignHCenter;
