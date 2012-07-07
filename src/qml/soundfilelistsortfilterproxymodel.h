@@ -43,6 +43,8 @@ public:
         return soundFileList->rowCount(parent);
     }
 
+    Q_INVOKABLE void add(QString description, QString fileName, QString category);
+
 signals:
     void changed();
 

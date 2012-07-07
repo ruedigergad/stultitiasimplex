@@ -40,7 +40,8 @@ Sheet{
             itm.description = description
             itm.fileName = fileName
         }else{
-
+            console.log("Adding new entry...")
+            soundFileList.add(description, fileName, category)
         }
     }
 
