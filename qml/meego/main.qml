@@ -37,7 +37,7 @@ PageStackWindow {
             Rectangle {
                 id: header
                 height: 72
-                color: "#0c61a8"
+                color: "#ff9900"
                 anchors{left: parent.left; right: parent.right; top: parent.top}
 
                 Text {
