@@ -27,7 +27,7 @@ Dialog {
       anchors.fill: parent
 
       Text {id: homepage;
-          text: "<a href=\"http://stultitiasimple.sourceforge.net/\" style=\"text-decoration:none; color:#78bfff\" >StultitiaSimplex - Version 2.0.0</a><br /><a href=\"http://stultitiasimple.sourceforge.net/\"><img src=\"qrc:/svg/icon_text_card_white.png\" /></a>";
+          text: "<a href=\"https://github.com/ruedigergad/stultitiasimplex\" style=\"text-decoration:none; color:#ff9900" >StultitiaSimplex - Version 2.0.0</a><br /><a href=\"https://github.com/ruedigergad/stultitiasimplex\"><img src=\"qrc:/svg/icon_text_card_white.png\" /></a>";
           textFormat: Text.RichText;
           onLinkActivated: { Qt.openUrlExternally(link); }
           font.pixelSize: 25; horizontalAlignment: Text.AlignHCenter;
@@ -37,14 +37,14 @@ Dialog {
 
       Text {id: author;
           text: "Authors: <br />"
-                 + "Ruediger Gad - <a href=\"mailto:r.c.g@gmx.de\" style=\"text-decoration:none; color:#78bfff\" >r.c.g@gmx.de</a><br />"
+                 + "Ruediger Gad - <a href=\"mailto:r.c.g@gmx.de\" style=\"text-decoration:none; color:#ff9900\" >r.c.g@gmx.de</a><br />"
           textFormat: Text.RichText;
           onLinkActivated: { Qt.openUrlExternally(link); }
           font.pixelSize: 20; anchors.centerIn: parent; color: "lightgray"; horizontalAlignment: Text.AlignHCenter}
 
       Text {id: license;
           text: "StultitiaSimplex is free software: you can redistribute it and/or modify "
-            + "it under the terms of the <a href=\"http://www.gnu.org/licenses\" style=\"text-decoration:none; color:#78bfff\" >GNU General Public License</a> as published by "
+            + "it under the terms of the <a href=\"http://www.gnu.org/licenses\" style=\"text-decoration:none; color:#ff9900\" >GNU General Public License</a> as published by "
             + "the Free Software Foundation, either version 3 of the License, or "
             + "(at your option) any later version.";
           textFormat: Text.RichText;
