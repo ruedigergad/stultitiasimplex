@@ -30,17 +30,15 @@ SoundFileList::SoundFileList(QObject *parent) :
     QAbstractListModel(parent){
     qDebug("SoundFileList constructor...");
 
-    QHash<int, QByteArray> roles;
-    roles[DescriptionRole] = "description";
-    roles[FileNameRole] = "fileName";
+    m_roles[DescriptionRole] = "description";
+    m_roles[FileNameRole] = "fileName";
     /*
      * Needed to make SectionScroller happy.
      * Take care to give the property used for naming the
      * section in the ListView the same name as in the
      * model element class (here Entry, see entry.h).
      */
-    roles[CategoryRole] = "category";
-    setRoleNames(roles);
+    m_roles[CategoryRole] = "category";
 
     soundFiles = new QList<SoundFile *>();
 
@@ -62,8 +60,10 @@ SoundFileList::~SoundFileList() {
 
 
 void SoundFileList::add(SoundFile *file){
+    beginResetModel();
     soundFiles->append(file);
     connect(file, SIGNAL(changed()), this, SLOT(save()));
+    endResetModel();
     emit changed();
 }
 
@@ -72,6 +72,7 @@ const QList<SoundFile *> * SoundFileList::getList(){
 }
 
 void SoundFileList::move(int from, int to){
+    beginResetModel();
     if(to < 0){
         to = 0;
     }
@@ -81,11 +82,13 @@ void SoundFileList::move(int from, int to){
     }
 
     soundFiles->move(from, to);
+    endResetModel();
     emit moved(to);
 }
 
 void SoundFileList::readFromCsv(QString filename){
     qDebug("Reading sound file list.");
+    beginResetModel();
     QFile file(filename);
 
     if(file.open(QFile::ReadOnly)){
@@ -113,17 +116,21 @@ void SoundFileList::readFromCsv(QString filename){
         file.close();
         qDebug("Finished reading. List size is: %d", rowCount());
     }
+    endResetModel();
 }
 
 void SoundFileList::remove(SoundFile *file){
     qDebug("Entering SoundFileList::remove()...");
+    beginResetModel();
     disconnect(file, SIGNAL(changed()), this, SLOT(save()));
     soundFiles->removeOne(file);
+    endResetModel();
     emit changed();
 }
 
 void SoundFileList::reset(){
-    QAbstractListModel::reset();
+    beginResetModel();
+    endResetModel();
     emit changed();
 }
 

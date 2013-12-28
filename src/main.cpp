@@ -17,11 +17,12 @@
  *  along with StultitiaSimplex.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <QtGui/QApplication>
 
-#ifdef MEEGO_EDITION_HARMATTAN
-#include <applauncherd/MDeclarativeCache>
-#include <QtDeclarative>
+#if defined(MEEGO_EDITION_HARMATTAN) || defined(MER_EDITION_SAILFISH)
+#include <QGuiApplication>
+#include <QQuickView>
+#include <QtQml>
+
 #include "src/data/soundfile.h"
 #include "src/data/soundfilelist.h"
 #include "src/qml/qmlaudioplayer.h"
@@ -30,15 +31,16 @@
 #include "src/qml/soundfilelistsortfilterproxymodel.h"
 #include "src/qml/qmlaudiorecorder.h"
 #else
+#include <QtGui/QApplication>
 #include "src/ui/mainwindow.h"
 #endif
 
 
-#ifdef MEEGO_EDITION_HARMATTAN
+#if defined(MEEGO_EDITION_HARMATTAN) || defined(MER_EDITION_SAILFISH)
 Q_DECL_EXPORT int main(int argc, char *argv[])
 {
-    QApplication *app = MDeclarativeCache::qApplication(argc, argv);
-    QDeclarativeView *view = MDeclarativeCache::qDeclarativeView();
+    QGuiApplication *app = new QGuiApplication(argc, argv);
+    QQuickView *view = new QQuickView();
 
     qmlRegisterType<SoundFile>("stultitiasimplex", 1, 0, "SoundFile");
     qmlRegisterType<SoundFileList>("stultitiasimplex", 1, 0, "SoundFileList");
@@ -48,12 +50,9 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     qmlRegisterType<QmlSettingsAdapter>("stultitiasimplex", 1, 0, "QmlSettingsAdapter");
     qmlRegisterType<SoundFileListSortFilterProxyModel>("stultitiasimplex", 1, 0, "SoundFileListSortFilterProxyModel");
 
-    view->setSource(QUrl("/opt/stultitiasimplex/qml/main.qml"));
-    view->showFullScreen();
+    view->setSource(QUrl("/usr/share/harbour-stultitiasimplex/qml/main.qml"));
+    view->show();
 
-//    view.setResizeMode(QDeclarativeView::SizeRootObjectToView);
-//    view.resize(500, 400);
-//    view.show();
     return app->exec();
 }
 #else

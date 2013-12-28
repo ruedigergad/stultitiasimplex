@@ -20,6 +20,8 @@
 #include "pa_volume_helper.h"
 #include "pa_utils.h"
 
+#define TRUE 0
+
 pa_volume_t volume = 0;
 bool got_volume = false;
 

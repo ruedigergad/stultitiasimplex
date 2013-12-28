@@ -22,7 +22,6 @@
 
 #include "src/io/audio/abstractaudioplayerbackend.h"
 
-#include <QMessageBox>
 #include <QString>
 
 class AudioPlayer : public QObject
@@ -41,7 +40,6 @@ signals:
 private:
     void createAbortDialog();
 
-    QMessageBox *abortDialog;
     AbstractAudioPlayerBackend *backend;
 
 private slots:

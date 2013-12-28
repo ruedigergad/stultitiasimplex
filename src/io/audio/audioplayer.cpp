@@ -46,7 +46,7 @@ AudioPlayer::~AudioPlayer(){
 }
 
 void AudioPlayer::abortPlay(int ret){
-    if(ret == QMessageBox::Ok){
+    if(ret == 0){
         qDebug("Abort requested...");
         backend->abortPlay();
     }else{
@@ -55,19 +55,9 @@ void AudioPlayer::abortPlay(int ret){
 }
 
 void AudioPlayer::createAbortDialog(){
-    abortDialog = new QMessageBox(0);
-    abortDialog->setIcon(QMessageBox::Question);
-    abortDialog->setDefaultButton(QMessageBox::Ok);
-    abortDialog->setText("Abort play?");
-
-    connect(this, SIGNAL(finished()), abortDialog, SLOT(close()), Qt::QueuedConnection);
-    connect(abortDialog, SIGNAL(finished(int)), this, SLOT(abortPlay(int)), Qt::QueuedConnection);
-
-    abortDialog->open();
 }
 
 void AudioPlayer::play(QString file){
-    createAbortDialog();
     backend->play(file);
 }
 

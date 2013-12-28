@@ -19,7 +19,7 @@
 
 #include "pulseaudioplayerbackend.h"
 
-#ifndef MEEGO_EDITION_HARMATTAN
+#if !defined(MEEGO_EDITION_HARMATTAN) && !defined(MER_EDITION_SAILFISH)
 #include "src/ui/dialog/settingsdialog.h"
 #endif
 

@@ -53,6 +53,8 @@ public:
     // Needed to make SectionScroller happy.
     Q_INVOKABLE SoundFile* get(int index) { return at(index); }
 
+    virtual QHash<int, QByteArray> roleNames() const { return m_roles; }
+
 signals:
     void changed();
     void moved(int to);
@@ -65,6 +67,8 @@ private:
     QList<SoundFile *> *soundFiles;
     void readFromCsv(QString filename);
     void writeToCsv(QString filename);
+
+    QHash<int, QByteArray> m_roles;
 };
 
 #endif // SOUNDFILELIST_H

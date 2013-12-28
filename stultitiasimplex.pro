@@ -91,8 +91,36 @@ win32:FORMS += \
     forms/settingsdialog.ui \
     forms/soundfilelistdialog.ui \
 
+exists("/usr/lib/qt5/qml/Sailfish/Silica/SilicaGridView.qml"): {
+    message(SailfishOS build)
 
-exists($$QMAKE_INCDIR_QT"/../applauncherd/MDeclarativeCache"): {
+    TARGET = harbour-meepasswords
+
+    DEFINES += QDECLARATIVE_BOOSTER
+    DEFINES += MER_EDITION_SAILFISH
+    DEFINES += SYNC_TO_IMAP_SUPPORT
+    MER_EDITION = sailfish
+
+    CONFIG += link_pkgconfig
+    PKGCONFIG += sailfishapp
+
+    QT += quick qml
+
+    # enable booster
+    CONFIG += qdeclarative-boostable
+    QMAKE_CXXFLAGS += -fPIC -fvisibility=hidden -fvisibility-inlines-hidden
+    QMAKE_LFLAGS += -pie -rdynamic
+
+    target.path = /usr/bin
+    desktop.files += res/sailfish/harbour-stultitiasimplex.desktop
+    desktop.path = /usr/share/applications
+    icon.files += res/sailfish/harbour-stultitiasimplex.png
+    icon.path = /usr/share/icons/hicolor/86x86/apps
+    qml.files += qml/sailfish/*
+    qml.path = /usr/share/harbour-stultitiasimplex/qml
+
+    INSTALLS += target desktop icon qml
+} else:exists($$QMAKE_INCDIR_QT"/../applauncherd/MDeclarativeCache"): {
     MEEGO_VERSION_MAJOR     = 1
     MEEGO_VERSION_MINOR     = 2
     MEEGO_VERSION_PATCH     = 0
