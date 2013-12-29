@@ -165,9 +165,9 @@ Dialog {
     Dialog {
         id: addCategoryDialog
 
-        DialogHeader {
-            title: "Add Category"
-        }
+//        DialogHeader {
+//            title: "Add Category"
+//        }
 
         TextField {
             id: newCategoryTextField

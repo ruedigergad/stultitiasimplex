@@ -74,7 +74,7 @@ Item {
             id: dragArea
             objectName: "dragArea"
 
-            x: settingsAdapter.fastScrollAnchor === "left" ? parent.x : parent.x + parent.width - width
+            x: parent.x
 
             anchors.top: parent.top
             anchors.bottom: parent.bottom
@@ -156,7 +156,7 @@ Item {
                 id: magnifierLabel
                 objectName: "magnifierLabel"
                 opacity: rail.dragging ? 1 : 0
-                x: settingsAdapter.fastScrollAnchor === "left" ? rail.width + primaryBorderSize : primaryBorderSize
+                x: rail.width + primaryBorderSize
                 anchors.verticalCenter: magnifier.verticalCenter
 
                 font.pointSize: primaryFontSize * 1.5

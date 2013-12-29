@@ -37,10 +37,6 @@ QString SoundFile::getFileName(){
     return fileName;
 }
 
-SoundFileList *SoundFile::getList(){
-    return list;
-}
-
 QString SoundFile::getCategory(){
     return category;
 }

@@ -40,7 +40,6 @@ public:
     QString getDescription();
     QString getFileName();
     QString getCategory();
-    SoundFileList *getList();
 
     void setDescription(const QString desc);
     void setFileName(const QString name);
@@ -58,7 +57,6 @@ private:
     QString category;
     QString description;
     QString fileName;
-    SoundFileList *list;
 
 };
 

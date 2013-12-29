@@ -21,6 +21,7 @@
 #if defined(MEEGO_EDITION_HARMATTAN) || defined(MER_EDITION_SAILFISH)
 #include <QGuiApplication>
 #include <QQuickView>
+#include <QQuickWindow>
 #include <QtQml>
 
 #include "src/data/soundfile.h"
@@ -39,6 +40,8 @@
 #if defined(MEEGO_EDITION_HARMATTAN) || defined(MER_EDITION_SAILFISH)
 Q_DECL_EXPORT int main(int argc, char *argv[])
 {
+    QQuickWindow::setDefaultAlphaBuffer(true);
+
     QGuiApplication *app = new QGuiApplication(argc, argv);
     QQuickView *view = new QQuickView();
 

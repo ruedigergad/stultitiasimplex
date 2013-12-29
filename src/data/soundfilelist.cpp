@@ -47,6 +47,7 @@ SoundFileList::SoundFileList(QObject *parent) :
 }
 
 SoundFileList::~SoundFileList() {
+    qDebug("Entering SoundFileList::~SoundFileList().");
     writeToCsv(Constants::SOUNDLIST_FILE);
 
     if(soundFiles != 0){
@@ -129,6 +130,7 @@ void SoundFileList::remove(SoundFile *file){
 }
 
 void SoundFileList::reset(){
+    qDebug("Resetting SoundFileList model.");
     beginResetModel();
     endResetModel();
     emit changed();

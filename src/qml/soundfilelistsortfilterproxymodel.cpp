@@ -34,6 +34,7 @@ SoundFileListSortFilterProxyModel::SoundFileListSortFilterProxyModel(QObject *pa
 }
 
 SoundFileListSortFilterProxyModel::~SoundFileListSortFilterProxyModel(){
+    qDebug("Entering SoundFileListSortFilterProxyModel::~SoundFileListSortFilterProxyModel().");
     delete soundFileList;
 }
 
