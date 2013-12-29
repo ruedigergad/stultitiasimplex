@@ -42,13 +42,13 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     QGuiApplication *app = new QGuiApplication(argc, argv);
     QQuickView *view = new QQuickView();
 
-    qmlRegisterType<SoundFile>("stultitiasimplex", 1, 0, "SoundFile");
-    qmlRegisterType<SoundFileList>("stultitiasimplex", 1, 0, "SoundFileList");
-    qmlRegisterType<QmlAudioPlayer>("stultitiasimplex", 1, 0, "QmlAudioPlayer");
-    qmlRegisterType<QmlAudioRecorder>("stultitiasimplex", 1, 0, "QmlAudioRecorder");
-    qmlRegisterType<FileSystemHelper>("stultitiasimplex", 1, 0, "FileSystemHelper");
-    qmlRegisterType<QmlSettingsAdapter>("stultitiasimplex", 1, 0, "QmlSettingsAdapter");
-    qmlRegisterType<SoundFileListSortFilterProxyModel>("stultitiasimplex", 1, 0, "SoundFileListSortFilterProxyModel");
+    qmlRegisterType<SoundFile>("harbour.stultitiasimplex", 1, 0, "SoundFile");
+    qmlRegisterType<SoundFileList>("harbour.stultitiasimplex", 1, 0, "SoundFileList");
+    qmlRegisterType<QmlAudioPlayer>("harbour.stultitiasimplex", 1, 0, "QmlAudioPlayer");
+    qmlRegisterType<QmlAudioRecorder>("harbour.stultitiasimplex", 1, 0, "QmlAudioRecorder");
+    qmlRegisterType<FileSystemHelper>("harbour.stultitiasimplex", 1, 0, "FileSystemHelper");
+    qmlRegisterType<QmlSettingsAdapter>("harbour.stultitiasimplex", 1, 0, "QmlSettingsAdapter");
+    qmlRegisterType<SoundFileListSortFilterProxyModel>("harbour.stultitiasimplex", 1, 0, "SoundFileListSortFilterProxyModel");
 
     view->setSource(QUrl("/usr/share/harbour-stultitiasimplex/qml/main.qml"));
     view->show();

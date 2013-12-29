@@ -27,7 +27,7 @@ QString Constants::CSV_SEPARATOR = ";";
 #ifndef Q_WS_MAEMO_5
 QString Constants::WORK_DIR = QDir::home().absolutePath() + "/.stultitiaSimplex";
 #else
-QString Constants::WORK_DIR = QDir::home().absolutePath() + "/MyDocs/stultitiaSimplex";
+QString Constants::WORK_DIR = QDir::home().absolutePath() + "/.stultitiaSimplex";
 #endif
 QString Constants::SOUNDLIST_FILE = WORK_DIR + "/buttons.csv";
 QString Constants::SOUNDS_DIR = WORK_DIR + "/sounds";

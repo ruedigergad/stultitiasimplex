@@ -1,0 +1,27 @@
+Name: harbour-stultitiasimplex
+Summary: A Simple Soundboard
+Version: 1.3.1
+Release: 1
+Group: Qt/Qt
+License: GPLv3
+Sources:
+- '%{name}-%{version}.tar.bz2'
+Description: |
+  StultitiaSimples is a simple soundboard to annoy your friends and colleagues.
+Configure: none
+Builder: qtc5
+PkgConfigBR:
+- Qt5Qml
+- Qt5Core
+- Qt5Quick
+- libpulse
+- libpulse-simple
+- sndfile
+  #- sailfishapp >= 0.0.10
+PkgBR: []
+Requires: []
+Files:
+- '%{_bindir}/%{name}'
+- '%{_datadir}/%{name}'
+- '%{_datadir}/applications'
+- '%{_datadir}/icons/hicolor/86x86/apps'

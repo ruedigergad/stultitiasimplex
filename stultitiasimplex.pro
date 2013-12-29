@@ -94,7 +94,7 @@ win32:FORMS += \
 exists("/usr/lib/qt5/qml/Sailfish/Silica/SilicaGridView.qml"): {
     message(SailfishOS build)
 
-    TARGET = harbour-meepasswords
+    TARGET = harbour-stultitiasimplex
 
     DEFINES += QDECLARATIVE_BOOSTER
     DEFINES += MER_EDITION_SAILFISH
@@ -197,5 +197,14 @@ OTHER_FILES += \
     qml/meego/AboutDialog.qml \
     qml/meego/EditSoundFileSheet.qml \
     qml/meego/SettingsSheet.qml \
-    qml/meego/RecordDialog.qml
+    qml/meego/RecordDialog.qml \
+    qml/sailfish/main.qml \
+    qml/sailfish/FastScroll.qml \
+    qml/sailfish/FastScroll.js \
+    qml/sailfish/SoundFileListView.qml \
+    qml/sailfish/AboutDialog.qml \
+    qml/sailfish/EditSoundFileSheet.qml \
+    qml/sailfish/SettingsSheet.qml \
+    qml/sailfish/SelectionDialog.qml \
+    qml/sailfish/RecordDialog.qml
 
