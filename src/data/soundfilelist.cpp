@@ -120,6 +120,15 @@ void SoundFileList::remove(SoundFile *file) {
     emit changed();
 }
 
+void SoundFileList::remove(int idx) {
+    qDebug("Entering SoundFileList::remove()...");
+    beginResetModel();
+    disconnect(&(soundFiles.at(idx)), SIGNAL(changed()), this, SLOT(save()));
+    soundFiles.removeAt(idx);
+    endResetModel();
+    emit changed();
+}
+
 void SoundFileList::reset() {
     qDebug("Resetting SoundFileList model.");
     beginResetModel();

@@ -32,37 +32,18 @@ ApplicationWindow {
     Page {
         id: mainPage
 
-        Rectangle {
+        SoundFileListView {
+            id: soundFileListView
+
+            model: soundFileList
+
             anchors.fill: parent
-            color: "lightgray"
+            clip: true
+        }
 
-            Rectangle {
-                id: header
-                height: 72
-                color: "#ff9900"
-                anchors {left: parent.left; right: parent.right; top: parent.top}
-
-                Text {
-                    text: "Stultitia Simplex"
-                    color: "white"
-                    font {pixelSize: 32}
-                    anchors {left: parent.left; leftMargin: 20; verticalCenter: parent.verticalCenter}
-                }
-            }
-
-            SoundFileListView {
-                id: soundFileListView
-
-                model: soundFileList
-
-                anchors {top: header.bottom; left: parent.left; right: parent.right; bottom: parent.bottom}
-                clip: true
-            }
-
-            FastScroll {
-                id: sectionScroller
-                listView: soundFileListView
-            }
+        FastScroll {
+            id: sectionScroller
+            listView: soundFileListView
         }
     }
 
@@ -143,81 +124,4 @@ ApplicationWindow {
         id: qmlSettingsAdapter
     }
 
-//    ToolBarLayout {
-//        id: commonTools
-
-//        ToolIcon {
-//            id: iconAdd
-//            platformIconId: "toolbar-add"
-//            opacity: enabled ? 1 : 0.5
-//            onClicked: {
-//                console.log("Add...")
-//                editSoundFileSheet.category = ""
-//                editSoundFileSheet.description = ""
-//                editSoundFileSheet.fileName = ""
-//                editSoundFileSheet.edit = false
-//                editSoundFileSheet.open()
-//            }
-//        }
-
-//        ToolIcon {
-//            id: iconEdit
-//            platformIconId: "toolbar-edit"
-//            enabled: soundFileListView.currentIndex >= 0
-//            opacity: enabled ? 1 : 0.5
-//            onClicked: {
-//                console.log("Edit...")
-//                var itm = soundFileList.get(soundFileListView.currentIndex)
-//                editSoundFileSheet.category = itm.category
-//                editSoundFileSheet.description = itm.description
-//                editSoundFileSheet.fileName = itm.fileName
-//                editSoundFileSheet.edit = true
-//                editSoundFileSheet.open()
-//            }
-//        }
-
-//        ToolIcon {
-//            id: iconPlay
-//            platformIconId: "toolbar-mediacontrol-play"
-//            enabled: soundFileListView.currentIndex >= 0
-//            opacity: enabled ? 1 : 0.5
-//            onClicked: {
-//                console.log("Play...")
-//                player.play(soundFileList.get(soundFileListView.currentIndex).fileName)
-//            }
-//        }
-
-//        ToolIcon {
-//            id: iconMenu
-//            platformIconId: "toolbar-view-menu"
-//            opacity: enabled ? 1 : 0.5
-//            anchors.right: parent === undefined ? undefined : parent.right
-//            onClicked: myMenu.status === DialogStatus.Closed ? myMenu.open() : myMenu.close()
-//        }
-//    }
-
-//    Menu {
-//        id: myMenu
-
-//        MenuLayout {
-//            MenuItem {
-//                text: "Record Sound"
-//                onClicked: {
-//                    console.log("Record...")
-//                    recordDialog.open()
-//                }
-//            }
-//            MenuItem {
-//                text: "Settings"
-//                onClicked: {
-//                    console.log("Settings...")
-//                    settingsSheet.open()
-//                }
-//            }
-//            MenuItem {
-//                text: "About"
-//                onClicked: aboutDialog.open()
-//            }
-//        }
-//    }
 }

@@ -44,7 +44,8 @@ public:
     void add(const SoundFile &file);
     const QList<SoundFile> *getList();
     void move(int from, int to);
-    void remove(SoundFile *file);
+    Q_INVOKABLE void remove(SoundFile *file);
+    Q_INVOKABLE void remove(int idx);
 
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
     Q_INVOKABLE int rowCount(const QModelIndex &parent = QModelIndex()) const;

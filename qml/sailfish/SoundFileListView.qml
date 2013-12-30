@@ -23,15 +23,19 @@ import Sailfish.Silica 1.0
 SilicaListView {
     id: soundFileListView
 
-    delegate: Item {
-        anchors {left: parent.left; leftMargin: 10; right: parent.right}
-        height: descText.height
+    property Item contextMenu
 
-        Rectangle {
-            anchors.fill: parent
-            color: "black"
-            opacity: delegateMouseArea.pressed ? 0.5 : 0
-        }
+    function removeCurrentItem() {
+        soundFileList.remove(soundFileListView.currentIndex)
+    }
+
+    delegate: BackgroundItem {
+        id: listItem
+
+        width: parent.width
+        height: menuOpen ? contextMenu.height + descText.height : descText.height
+
+        property bool menuOpen: entryListView.contextMenu != null && entryListView.contextMenu.parent === listItem.parent
 
         Text {
             id: descText
@@ -42,18 +46,62 @@ SilicaListView {
             wrapMode: Text.WordWrap
         }
 
-        MouseArea {
-            id: delegateMouseArea
-            anchors.fill: parent
+        RemorseItem { id: remorse }
 
-            onClicked: {
-                soundFileListView.currentIndex = index
+        onClicked: {
+            console.log("Delegate clicked.")
+            soundFileListView.currentIndex = index
+        }
+
+        onDoubleClicked: {
+            console.log("Delegate double-clicked.")
+            soundFileListView.currentIndex = index
+            console.log("Selected: " + description)
+            console.log("File name: " + fileName)
+            player.play(fileName)
+        }
+
+        onPressAndHold: {
+            console.log("Delegate press and hold...")
+            if (!contextMenu)
+                contextMenu = contextMenuComponent.createObject(soundFileListView)
+            contextMenu.show(listItem)
+        }
+
+    }
+
+    Component {
+        id: contextMenuComponent
+        ContextMenu {
+            MenuItem {
+                text: "Play Sound"
+
+                onClicked: {
+                    console.log("Play...")
+                    player.play(soundFileList.get(soundFileListView.currentIndex).fileName)
+                }
             }
 
-            onDoubleClicked: {
-                console.log("Selected: " + description)
-                console.log("File name: " + fileName)
-                player.play(fileName)
+            MenuItem {
+                text: "Edit Sound"
+
+                onClicked: {
+                    console.log("Edit...")
+                    var itm = soundFileList.get(soundFileListView.currentIndex)
+                    editSoundFileSheet.category = itm.category
+                    editSoundFileSheet.description = itm.description
+                    editSoundFileSheet.fileName = itm.fileName
+                    editSoundFileSheet.edit = true
+                    editSoundFileSheet.open()
+                }
+            }
+
+            MenuItem {
+                text: "Delete Sound"
+
+                onClicked: {
+                    remorse.execute(listItem, "Deleting Sound...", )
+                }
             }
         }
     }
@@ -90,6 +138,49 @@ SilicaListView {
                 anchors.right: parent.right
                 anchors.bottom: parent.bottom
             }
+        }
+    }
+
+    PullDownMenu {
+        MenuItem {
+            text: "Add Sound"
+
+            onClicked: {
+                console.log("Add...")
+                editSoundFileSheet.category = ""
+                editSoundFileSheet.description = ""
+                editSoundFileSheet.fileName = ""
+                editSoundFileSheet.edit = false
+                editSoundFileSheet.open()
+            }
+        }
+
+        MenuItem {
+            text: "Record Sound"
+            onClicked: {
+                console.log("Record...")
+                recordDialog.open()
+            }
+        }
+
+        MenuItem {
+            text: "Settings"
+            onClicked: {
+                console.log("Settings...")
+                settingsSheet.open()
+            }
+        }
+
+        MenuItem {
+            text: "About"
+            onClicked: aboutDialog.open()
+        }
+    }
+
+    PushUpMenu {
+        MenuItem {
+            text: "Go to Top"
+            onClicked: soundFileListView.scrollToTop()
         }
     }
 }
