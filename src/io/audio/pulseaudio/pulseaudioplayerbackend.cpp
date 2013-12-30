@@ -64,7 +64,7 @@ void PulseAudioPlayerBackend::run(){
                               &err);
     if(simple_api == NULL){
         qDebug("Error creating audio output:\n %s", pa_strerror(err));
-        goto finish;
+        return;
     }
 
     setVolume();
@@ -72,28 +72,29 @@ void PulseAudioPlayerBackend::run(){
     buffer = new int[BUFFER_SIZE];
 
     read_count = fileHandle->readRaw(buffer, BUFFER_SIZE);
-    while(read_count > 0){
-        if(abort){
+    while (read_count > 0) {
+        if (abort) {
             qDebug("Aborting audio output...");
-            goto finish;
+            break;
         }
 
         int count = pa_simple_write(simple_api, buffer, read_count, &err);
-        if(count < 0){
+        if (count < 0) {
             qDebug("Error playing audio:\n %s", pa_strerror(err));
-            goto finish;
+            break;
         }
 
         read_count = fileHandle->readRaw(buffer, BUFFER_SIZE);
     }
 
-finish:
     pa_simple_free(simple_api);
 
-    if(volumeOverride){
-#if defined (Q_WS_MAEMO_5)
-        set_stream_volume("sink-input-by-media-role:x-maemo", oldVolume);
-#elif defined (MEEGO_EDITION_HARMATTAN)
+    restoreVolume();
+}
+
+void PulseAudioPlayerBackend::restoreVolume() {
+    if (volumeOverride) {
+#if defined(Q_WS_MAEMO_5) || defined(MEEGO_EDITION_HARMATTAN)
         set_stream_volume("sink-input-by-media-role:x-maemo", oldVolume);
 #else
         set_volume(0, oldVolume);
@@ -101,17 +102,15 @@ finish:
     }
 }
 
-void PulseAudioPlayerBackend::setVolume(){
+void PulseAudioPlayerBackend::setVolume() {
     QSettings settings;
 
     volumeOverride = settings.value(Constants::VOLUME_OVERRIDE, false).toBool();
 
-    if(volumeOverride){
+    if (volumeOverride) {
         int vol = settings.value(Constants::VOLUME, 0).toInt();
         pa_volume_t newVolume = pa_sw_volume_from_linear(((double) vol)/100.0);
-#if defined(Q_WS_MAEMO_5)
-        oldVolume = get_stream_volume("sink-input-by-media-role:x-maemo");
-#elif defined(MEEGO_EDITION_HARMATTAN)
+#if defined(Q_WS_MAEMO_5) || defined(MEEGO_EDITION_HARMATTAN)
         oldVolume = get_stream_volume("sink-input-by-media-role:x-maemo");
 #else
         oldVolume = get_volume();
@@ -119,9 +118,7 @@ void PulseAudioPlayerBackend::setVolume(){
         qDebug("Got volume: %u", oldVolume);
         qDebug("Setting volume: %u", newVolume);
 
-#if defined(Q_WS_MAEMO_5)
-        set_stream_volume("sink-input-by-media-role:x-maemo", newVolume);
-#elif defined(MEEGO_EDITION_HARMATTAN)
+#if defined(Q_WS_MAEMO_5) || defined(MEEGO_EDITION_HARMATTAN)
         set_stream_volume("sink-input-by-media-role:x-maemo", newVolume);
 #else
         set_volume(0, newVolume);

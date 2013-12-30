@@ -33,6 +33,7 @@ public:
     void run();
 
 private:
+    void restoreVolume();
     void setVolume();
 
     char *devName;

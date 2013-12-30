@@ -53,7 +53,7 @@ SoundFileList::~SoundFileList() {
 void SoundFileList::add(const SoundFile &file){
     beginResetModel();
     soundFiles.append(file);
-//    connect(file, SIGNAL(changed()), this, SLOT(save()));
+    connect(&file, SIGNAL(changed()), this, SLOT(save()));
     endResetModel();
     emit changed();
 }
@@ -100,7 +100,7 @@ void SoundFileList::readFromCsv(QString filename){
             }
 
             soundFiles.append(sF);
-//            connect(file, SIGNAL(changed()), this, SLOT(save()));
+            connect(&sF, SIGNAL(changed()), this, SLOT(save()));
 
             data = stream.readLine();
         }
@@ -160,7 +160,7 @@ QVariant SoundFileList::data(const QModelIndex &index, int role) const{
     if (index.row() < 0 || index.row() > soundFiles.count())
         return QVariant();
 
-    SoundFile file = soundFiles.at(index.row());
+    const SoundFile file = soundFiles.at(index.row());
     if(role == DescriptionRole)
         return file.getDescription();
     else if (role == FileNameRole)
