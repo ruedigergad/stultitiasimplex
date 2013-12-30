@@ -43,7 +43,7 @@ SilicaListView {
 
             anchors {left: parent.left; right: parent.right}
             color: Theme.primaryColor
-            font.pixelSize: Theme.fontSizeMedium
+            font.pointSize: Theme.fontSizeMedium
             horizontalAlignment: Text.AlignHCenter
             text: description
             wrapMode: Text.WordWrap

@@ -45,11 +45,12 @@ Dialog {
 
             Item {
                 id: volumeOverrideItem
-                anchors {top: parent.top; left: parent.left; right: parent.right}
+                anchors {verticalCenter: parent.verticalCenter; left: parent.left; right: parent.right}
                 height: volumeOverride.height
 
                 Text {
                     anchors.left: parent.left
+                    color: Theme.primaryColor
                     text: "Override Volume:"
                     font.pixelSize: 30
                 }
@@ -59,11 +60,12 @@ Dialog {
                 }
             }
             Item {
-                anchors {top: volumeOverrideItem.bottom; topMargin: 12; left: parent.left; right: parent.right}
+                anchors {verticalCenter: parent.verticalCenter; top: volumeOverrideItem.bottom; topMargin: 12; left: parent.left; right: parent.right}
 
                 Text {
                     id: volumeText
                     anchors.left: parent.left
+                    color: Theme.primaryColor
                     text: "Volume:"
                     font.pixelSize: 30
                 }

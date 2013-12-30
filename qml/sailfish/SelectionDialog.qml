@@ -57,38 +57,26 @@ Dialog {
             wrapMode: Text.WordWrap
         }
 
-        Rectangle {
-            id: selectionListViewRectangle
+        ListView {
+            id: selectionlListView
 
-            anchors.centerIn: parent
-            height: parent.height * 0.5
-            width: parent.width * 0.75;
+            anchors.fill: parent
+            clip: true
 
-            opacity: 0.8
-            color: "darkgray"
-//            radius: primaryFontSize * 0.5
+            delegate: Label {
+                width: parent.width
+                text: name
+                horizontalAlignment: Text.AlignHCenter
+                font.pointSize: Theme.fontSizeMedium
+                color: Theme.primaryColor
 
-            ListView {
-                id: selectionlListView
+//                    property string itemName: name
 
-                anchors.fill: parent
-                clip: true
-
-                delegate: Text {
-                    width: parent.width
-                    text: name
-                    horizontalAlignment: Text.AlignHCenter
-                    font.pointSize: primaryFontSize
-                    color: "white"
-
-                    property string itemName: name
-
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: {
-                            selectionlListView.currentIndex = index
-                            selectionDialog.accept()
-                        }
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        selectionlListView.currentIndex = index
+                        selectionDialog.accept()
                     }
                 }
             }

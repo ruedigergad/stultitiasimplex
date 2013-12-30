@@ -57,18 +57,35 @@ Dialog {
 
             anchors {top: parent.top; left: parent.left; right: parent.right; margins: 15}
 
+            PageHeader {
+                title: "Edit Sound File"
+            }
+
+            Text {
+                text: "Description"
+                color: Theme.primaryColor
+                font.pixelSize: 30
+                verticalAlignment: Text.AlignVCenter
+                width: parent.width
+            }
+
             Row {
                 width: parent.width
                 spacing: 10
 
-                Text {
-                    text: "Description"
-                    font.pixelSize: 30
-                    verticalAlignment: Text.AlignVCenter
-                }
-                TextArea {
+                TextField {
                     id: descriptionTextField
+                    width: parent.width
                 }
+            }
+
+            Text {
+                id: categoryText
+                color: Theme.primaryColor
+                text: "Category"
+                font.pixelSize: 30
+                verticalAlignment: Text.AlignVCenter
+                width: parent.width
             }
 
             Row {
@@ -76,25 +93,21 @@ Dialog {
                 width: parent.width
                 spacing: 10
 
-                Text {
-                    id: categoryText
-                    text: "Category"
-                    font.pixelSize: 30
-                    verticalAlignment: Text.AlignVCenter
-                }
                 Button {
                     id: categoryButton
-                    width: categoryRow.width - categoryText.width - addCategoryButton.width
+                    width: categoryRow.width - addCategoryButton.width
                     onClicked: {
                         categoryModel.clear()
                         var alreadyAdded = []
 
                         console.log("Already added: " + alreadyAdded)
-                        for(var i = 0; i < soundFileList.count; i++){
+
+                        for (var i = 0; i < soundFileList.count; i++) {
                             var current = soundFileList.get(i).category
-                            if(alreadyAdded.indexOf(current) < 0){
+
+                            if (alreadyAdded.indexOf(current) < 0) {
                                 console.log("Adding: " + current)
-                                categoryModel.append({"category": current})
+                                categoryModel.append({"name": current})
                                 alreadyAdded.push(current)
                             }
                         }
@@ -108,29 +121,30 @@ Dialog {
                     onClicked: addCategoryDialog.open()
                 }
             }
-            Row {
+
+            Text {
+                color: Theme.primaryColor
+                text: "File Name"
+                font.pixelSize: 30
+                verticalAlignment: Text.AlignVCenter
                 width: parent.width
-                spacing: 10
+            }
 
-                Text {
-                    text: "File Name"
-                    font.pixelSize: 30
-                    verticalAlignment: Text.AlignVCenter
-                }
-                Button {
-                    id: fileNameButton
+            Button {
+                id: fileNameButton
 
-                    onClicked: {
-                        var soundFiles = fileSystemHelper.getWavFiles().split("/")
-                        console.log(soundFiles)
+                width: parent.width
 
-                        fileNameModel.clear()
-                        for (var i = 0; i < soundFiles.length; i++) {
-                            fileNameModel.append({"fileName": soundFiles[i]})
-                        }
+                onClicked: {
+                    var soundFiles = fileSystemHelper.getWavFiles().split("/")
+                    console.log(soundFiles)
 
-                        fileNameSelectionDialog.open()
+                    fileNameModel.clear()
+                    for (var i = 0; i < soundFiles.length; i++) {
+                        fileNameModel.append({"name": soundFiles[i]})
                     }
+
+                    fileNameSelectionDialog.open()
                 }
             }
         }
@@ -145,7 +159,7 @@ Dialog {
 //        titleText: "Select Sound File"
         model: fileNameModel
         onAccepted: {
-            fileName = fileNameModel.get(selectedIndex).fileName
+            fileName = fileNameModel.get(selectedIndex).name
         }
     }
 
@@ -158,7 +172,7 @@ Dialog {
 //        titleText: "Select Category"
         model: categoryModel
         onAccepted: {
-            category = categoryModel.get(selectedIndex).category
+            category = categoryModel.get(selectedIndex).name
         }
     }
 
@@ -172,6 +186,7 @@ Dialog {
         TextField {
             id: newCategoryTextField
             anchors.centerIn: parent
+            width: parent.width * 0.75
         }
 
         onAccepted: {
