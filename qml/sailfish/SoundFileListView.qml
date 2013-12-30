@@ -26,9 +26,7 @@ SilicaListView {
 
     property Item contextMenu
 
-    function removeCurrentItem() {
-        soundFileList.remove(soundFileListView.currentIndex)
-    }
+    pressDelay: 0
 
     delegate: BackgroundItem {
         id: listItem

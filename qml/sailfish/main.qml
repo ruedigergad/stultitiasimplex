@@ -24,21 +24,16 @@ import harbour.stultitiasimplex 1.0
 ApplicationWindow {
     id: appWindow
 
-    initialPage: mainPage
-
     property int primaryFontSize: Theme.fontSizeMedium
     property int primaryBorderSize: Theme.fontSizeMedium
 
-    Page {
-        id: mainPage
-
+    initialPage: Page {
         SoundFileListView {
             id: soundFileListView
 
-            model: soundFileList
-
             anchors.fill: parent
             clip: true
+            model: soundFileList
         }
 
         FastScroll {
@@ -89,12 +84,16 @@ ApplicationWindow {
 
         Text {
             anchors.fill: parent
-            text: "Press to abort playback."
+            text: "Close to abort playback."
             font.pixelSize: 50
             color: "white"
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
             wrapMode: Text.WordWrap
+        }
+
+        onAccepted: {
+            player.abort()
         }
 
         onRejected: {
