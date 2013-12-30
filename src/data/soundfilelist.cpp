@@ -53,7 +53,6 @@ SoundFileList::~SoundFileList() {
 void SoundFileList::add(const SoundFile &file){
     beginResetModel();
     soundFiles.append(file);
-    connect(&file, SIGNAL(changed()), this, SLOT(save()));
     endResetModel();
     emit changed();
 }
@@ -100,7 +99,6 @@ void SoundFileList::readFromCsv(QString filename){
             }
 
             soundFiles.append(sF);
-            connect(&sF, SIGNAL(changed()), this, SLOT(save()));
 
             data = stream.readLine();
         }
@@ -114,7 +112,6 @@ void SoundFileList::readFromCsv(QString filename){
 void SoundFileList::remove(SoundFile *file) {
     qDebug("Entering SoundFileList::remove()...");
     beginResetModel();
-    disconnect(file, SIGNAL(changed()), this, SLOT(save()));
     soundFiles.removeOne(*file);
     endResetModel();
     emit changed();
@@ -123,7 +120,6 @@ void SoundFileList::remove(SoundFile *file) {
 void SoundFileList::remove(int idx) {
     qDebug("Entering SoundFileList::remove()...");
     beginResetModel();
-    disconnect(&(soundFiles.at(idx)), SIGNAL(changed()), this, SLOT(save()));
     soundFiles.removeAt(idx);
     endResetModel();
     emit changed();
@@ -138,6 +134,17 @@ void SoundFileList::reset() {
 
 void SoundFileList::save() {
     writeToCsv(Constants::SOUNDLIST_FILE);
+}
+
+void SoundFileList::update(int index, QString description, QString fileName, QString category) {
+    beginResetModel();
+    SoundFile sF;
+    sF.setDescription(description);
+    sF.setFileName(fileName);
+    sF.setCategory(category);
+    soundFiles.replace(index, sF);
+    endResetModel();
+    emit changed();
 }
 
 void SoundFileList::writeToCsv(QString filename) {

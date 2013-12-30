@@ -44,6 +44,8 @@ public:
     }
 
     Q_INVOKABLE void add(QString description, QString fileName, QString category);
+    Q_INVOKABLE void remove(int index);
+    Q_INVOKABLE void update(int index, QString description, QString fileName, QString category);
 
 signals:
     void changed();

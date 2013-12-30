@@ -46,6 +46,7 @@ public:
     void move(int from, int to);
     Q_INVOKABLE void remove(SoundFile *file);
     Q_INVOKABLE void remove(int idx);
+    Q_INVOKABLE void update(int index, QString description, QString fileName, QString category);
 
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
     Q_INVOKABLE int rowCount(const QModelIndex &parent = QModelIndex()) const;

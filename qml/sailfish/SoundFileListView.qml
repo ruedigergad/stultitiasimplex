@@ -38,12 +38,16 @@ SilicaListView {
 
         property bool menuOpen: contextMenu != null && contextMenu.parent === listItem
 
-        Label {
+        function triggerRemorseDeleteItem() {
+            remorse.execute(listItem, "Deleting Sound File...", function() { soundFileList.remove(index) })
+        }
+
+        Text {
             id: descText
 
             anchors {left: parent.left; right: parent.right}
             color: Theme.primaryColor
-            font.pointSize: Theme.fontSizeMedium
+            font.pointSize: primaryFontSize
             horizontalAlignment: Text.AlignHCenter
             text: description
             wrapMode: Text.WordWrap
@@ -66,6 +70,7 @@ SilicaListView {
 
         onPressAndHold: {
             console.log("Delegate press and hold...")
+            soundFileListView.currentIndex = index
             if (!contextMenu)
                 contextMenu = contextMenuComponent.createObject(listItem)
             contextMenu.show(listItem)
@@ -103,7 +108,7 @@ SilicaListView {
                 text: "Delete Sound"
 
                 onClicked: {
-                    remorse.execute(listItem, "Deleting Sound...", removeCurrentItem)
+                    soundFileListView.currentItem.triggerRemorseDeleteItem();
                 }
             }
         }
@@ -128,15 +133,15 @@ SilicaListView {
                 id: sectionText
                 anchors.right: parent.right
                 anchors.rightMargin: 10
-                font.pixelSize: 35
+                font.pointSize: primaryFontSize
                 font.bold: true
                 text: section
-                color: "gray"
+                color: Theme.secondaryColor
             }
 
             Rectangle {
                 height: 1
-                color: "gray"
+                color: Theme.secondaryColor
                 anchors.left: parent.left
                 anchors.right: parent.right
                 anchors.bottom: parent.bottom

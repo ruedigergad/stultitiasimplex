@@ -33,10 +33,7 @@ Dialog {
         console.log("Accepted.")
         if (edit) {
             console.log("Setting new values.")
-            var itm = soundFileList.get(soundFileListView.currentIndex)
-            itm.category = category
-            itm.description = description
-            itm.fileName = fileName
+            soundFileList.update(soundFileListView.currentIndex, description, fileName, category)
         } else {
             console.log("Adding new entry...")
             soundFileList.add(description, fileName, category)
@@ -196,6 +193,12 @@ Dialog {
 
         onRejected: {
             newCategoryTextField.text = ""
+        }
+
+        onStatusChanged: {
+            if (status === DialogStatus.Opening) {
+                newCategoryTextField.text = ""
+            }
         }
     }
 }

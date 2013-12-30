@@ -80,3 +80,17 @@ void SoundFileListSortFilterProxyModel::add(QString description, QString fileNam
 
     soundFileList->add(soundFile);
 }
+
+void SoundFileListSortFilterProxyModel::remove(int index) {
+    QModelIndex idx = this->index(index, 0);
+    QModelIndex srcIdx = mapToSource(idx);
+
+    soundFileList->remove(srcIdx.row());
+}
+
+void SoundFileListSortFilterProxyModel::update(int index, QString description, QString fileName, QString category) {
+    QModelIndex idx = this->index(index, 0);
+    QModelIndex srcIdx = mapToSource(idx);
+
+    soundFileList->update(srcIdx.row(), description, fileName, category);
+}

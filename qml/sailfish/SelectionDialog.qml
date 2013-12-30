@@ -63,16 +63,23 @@ Dialog {
             anchors.fill: parent
             clip: true
 
-            delegate: Label {
+            delegate: Text {
                 width: parent.width
                 text: name
                 horizontalAlignment: Text.AlignHCenter
-                font.pointSize: Theme.fontSizeMedium
+                font.pointSize: Theme.fontSizeLarge
                 color: Theme.primaryColor
 
 //                    property string itemName: name
 
+                Rectangle {
+                    anchors.fill: parent
+                    color: "gray"
+                    opacity: mouseArea.pressed ? 0.5 : 0
+                }
+
                 MouseArea {
+                    id: mouseArea
                     anchors.fill: parent
                     onClicked: {
                         selectionlListView.currentIndex = index

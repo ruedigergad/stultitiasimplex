@@ -34,48 +34,48 @@ Dialog {
         }
     }
 
-    SilicaFlickable {
-        anchors.fill: parent
-        contentHeight: sheetContent.height
+    Item {
+        id: sheetContent
+
+        anchors.centerIn: parent
+        width: parent.width
+        height: volumeOverrideItem.height + volumeItem.height
 
         Item {
-            id: sheetContent
+            id: volumeOverrideItem
+            anchors {top: parent.top; left: parent.left; right: parent.right}
+            height: volumeOverride.height
 
-            anchors {top: parent.top; left: parent.left; right: parent.right; margins: 15}
-
-            Item {
-                id: volumeOverrideItem
-                anchors {verticalCenter: parent.verticalCenter; left: parent.left; right: parent.right}
-                height: volumeOverride.height
-
-                Text {
-                    anchors.left: parent.left
-                    color: Theme.primaryColor
-                    text: "Override Volume:"
-                    font.pixelSize: 30
-                }
-                Switch {
-                    anchors.right: parent.right
-                    id: volumeOverride
-                }
+            Text {
+                anchors.left: parent.left
+                color: Theme.primaryColor
+                text: "Override Volume:"
+                font.pixelSize: 30
             }
-            Item {
-                anchors {verticalCenter: parent.verticalCenter; top: volumeOverrideItem.bottom; topMargin: 12; left: parent.left; right: parent.right}
+            Switch {
+                anchors.right: parent.right
+                id: volumeOverride
+            }
+        }
 
-                Text {
-                    id: volumeText
-                    anchors.left: parent.left
-                    color: Theme.primaryColor
-                    text: "Volume:"
-                    font.pixelSize: 30
-                }
-                Slider {
-                    anchors.left: volumeText.right
-                    anchors.right: parent.right
-                    id: volume
-                    minimumValue: 0
-                    maximumValue: 100
-                }
+        Item {
+            id: volumeItem
+            anchors {top: volumeOverrideItem.bottom; topMargin: 12; left: parent.left; right: parent.right}
+            height: volumeText.height
+
+            Text {
+                id: volumeText
+                anchors.left: parent.left
+                color: Theme.primaryColor
+                text: "Volume:"
+                font.pixelSize: 30
+            }
+            Slider {
+                anchors.left: volumeText.right
+                anchors.right: parent.right
+                id: volume
+                minimumValue: 0
+                maximumValue: 100
             }
         }
     }
