@@ -25,6 +25,7 @@ BuildRequires:  pkgconfig(Qt5Quick)
 BuildRequires:  pkgconfig(libpulse)
 BuildRequires:  pkgconfig(libpulse-simple)
 BuildRequires:  pkgconfig(sndfile)
+BuildRequires:  pkgconfig(audioresource)
 
 %description
 StultitiaSimples is a simple soundboard to annoy your friends and colleagues.

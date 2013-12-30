@@ -23,12 +23,15 @@
 #include "src/io/audio/abstractaudioplayerbackend.h"
 #include "pa_utils.h"
 
+#include <audioresource.h>
+
 #define BUFFER_SIZE 1024
 
 class PulseAudioPlayerBackend : public AbstractAudioPlayerBackend
 {
 public:
     PulseAudioPlayerBackend();
+    ~PulseAudioPlayerBackend();
 
     void run();
 
@@ -36,6 +39,7 @@ private:
     void restoreVolume();
     void setVolume();
 
+    audioresource_t *m_audioResource;
     char *devName;
     bool volumeOverride;
     pa_volume_t oldVolume;

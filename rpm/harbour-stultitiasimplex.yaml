@@ -17,6 +17,7 @@ PkgConfigBR:
 - libpulse
 - libpulse-simple
 - sndfile
+- audioresource
   #- sailfishapp >= 0.0.10
 PkgBR: []
 Requires: []

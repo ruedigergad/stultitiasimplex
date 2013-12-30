@@ -6,7 +6,7 @@
 
 unix:CONFIG += link_pkgconfig
 
-PKGCONFIG += sndfile
+PKGCONFIG += sndfile audioresource
 
 win32:PKGCONFIG += portaudio-2.0
 unix:PKGCONFIG += libpulse libpulse-simple

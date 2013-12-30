@@ -27,11 +27,27 @@
 #include <pulse/error.h>
 #include "src/constants.h"
 
+#include <QDebug>
 #include <QSettings>
+
+void on_audio_resource_acquired(audioresource_t *audio_resource, bool acquired, void *user_data)
+{
+    if (acquired) {
+        qDebug() << "Audio resource acquire.";
+    } else {
+        qDebug() << "Audio resource lost.";
+    }
+}
+
 
 PulseAudioPlayerBackend::PulseAudioPlayerBackend() : AbstractAudioPlayerBackend()
 {
     qDebug("Using PulseAudio player-backend...");
+    m_audioResource = audioresource_init(AUDIO_RESOURCE_GAME, on_audio_resource_acquired, NULL);
+}
+
+PulseAudioPlayerBackend::~PulseAudioPlayerBackend() {
+    audioresource_free(m_audioResource);
 }
 
 void PulseAudioPlayerBackend::run(){
@@ -40,21 +56,19 @@ void PulseAudioPlayerBackend::run(){
     int err;
     int read_count;
 
+    audioresource_acquire(m_audioResource);
+
     pa_sample_spec sample_spec;
     sample_spec.channels = fileHandle->channels();
     sample_spec.format = PA_SAMPLE_S16LE;
     sample_spec.rate = fileHandle->samplerate();
 
+    qDebug() << "Playback with " << sample_spec.channels << " at "
+             <<  sample_spec.rate << " in " << sample_spec.format << " format.";
+
     pa_simple *simple_api = NULL;
     simple_api = pa_simple_new(NULL,
-/*
- * FIXME: Quite a crude hack to get audio output in silent mode.
- */
-#ifdef Q_WS_MAEMO_5
-                              "FMRadio",
-#else
                               "StultitiaSimplex",
-#endif
                               PA_STREAM_PLAYBACK,
                               NULL,
                               "Output",
@@ -64,6 +78,7 @@ void PulseAudioPlayerBackend::run(){
                               &err);
     if(simple_api == NULL){
         qDebug("Error creating audio output:\n %s", pa_strerror(err));
+        audioresource_release(m_audioResource);
         return;
     }
 
@@ -90,6 +105,8 @@ void PulseAudioPlayerBackend::run(){
     pa_simple_free(simple_api);
 
     restoreVolume();
+
+    audioresource_release(m_audioResource);
 }
 
 void PulseAudioPlayerBackend::restoreVolume() {
