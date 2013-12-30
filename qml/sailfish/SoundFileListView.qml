@@ -17,6 +17,7 @@
  *  along with StultitiaSimplex.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import QtMultimedia 5.0
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
@@ -35,14 +36,16 @@ SilicaListView {
         width: parent.width
         height: menuOpen ? contextMenu.height + descText.height : descText.height
 
-        property bool menuOpen: entryListView.contextMenu != null && entryListView.contextMenu.parent === listItem.parent
+        property bool menuOpen: contextMenu != null && contextMenu.parent === listItem
 
-        Text {
+        Label {
             id: descText
+
             anchors {left: parent.left; right: parent.right}
+            color: Theme.primaryColor
+            font.pixelSize: Theme.fontSizeMedium
+            horizontalAlignment: Text.AlignHCenter
             text: description
-            font.pixelSize: 40
-            horizontalAlignment: Text.AlignLeft
             wrapMode: Text.WordWrap
         }
 
@@ -64,7 +67,7 @@ SilicaListView {
         onPressAndHold: {
             console.log("Delegate press and hold...")
             if (!contextMenu)
-                contextMenu = contextMenuComponent.createObject(soundFileListView)
+                contextMenu = contextMenuComponent.createObject(listItem)
             contextMenu.show(listItem)
         }
 
@@ -100,7 +103,7 @@ SilicaListView {
                 text: "Delete Sound"
 
                 onClicked: {
-                    remorse.execute(listItem, "Deleting Sound...", )
+                    remorse.execute(listItem, "Deleting Sound...", removeCurrentItem)
                 }
             }
         }
@@ -183,5 +186,7 @@ SilicaListView {
             onClicked: soundFileListView.scrollToTop()
         }
     }
+
+    MediaPlayer { id: mediaPlayer }
 }
 
