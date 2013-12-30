@@ -34,12 +34,15 @@ class SoundFile : public QObject
     Q_PROPERTY(QString category READ getCategory WRITE setCategory NOTIFY categoryChanged)
 
 public:
-    explicit SoundFile(QObject *parent = 0);
-    ~SoundFile();
+    SoundFile(QObject *parent = 0);
+    SoundFile(const SoundFile &obj, QObject *parent = 0);
 
-    QString getDescription();
-    QString getFileName();
-    QString getCategory();
+    SoundFile& operator = (const SoundFile &e);
+    bool operator == (const SoundFile &e);
+
+    QString getDescription() const;
+    QString getFileName() const;
+    QString getCategory() const;
 
     void setDescription(const QString desc);
     void setFileName(const QString name);
@@ -59,5 +62,7 @@ private:
     QString fileName;
 
 };
+
+bool soundFileCompare(const SoundFile &e1, const SoundFile &e2);
 
 #endif // SOUNDFILE_H

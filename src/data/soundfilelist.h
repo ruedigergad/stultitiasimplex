@@ -41,8 +41,8 @@ public:
     explicit SoundFileList(QObject *parent = 0);
     ~SoundFileList();
 
-    void add(SoundFile *file);
-    const QList<SoundFile *> *getList();
+    void add(const SoundFile &file);
+    const QList<SoundFile> *getList();
     void move(int from, int to);
     void remove(SoundFile *file);
 
@@ -64,7 +64,7 @@ public slots:
     void reset();
 
 private:
-    QList<SoundFile *> *soundFiles;
+    QList<SoundFile> soundFiles;
     void readFromCsv(QString filename);
     void writeToCsv(QString filename);
 

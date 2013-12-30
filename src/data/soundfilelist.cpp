@@ -40,8 +40,6 @@ SoundFileList::SoundFileList(QObject *parent) :
      */
     m_roles[CategoryRole] = "category";
 
-    soundFiles = new QList<SoundFile *>();
-
     readFromCsv(Constants::SOUNDLIST_FILE);
     connect(this, SIGNAL(changed()), this, SLOT(save()));
 }
@@ -49,27 +47,19 @@ SoundFileList::SoundFileList(QObject *parent) :
 SoundFileList::~SoundFileList() {
     qDebug("Entering SoundFileList::~SoundFileList().");
     writeToCsv(Constants::SOUNDLIST_FILE);
-
-    if(soundFiles != 0){
-        while(! soundFiles->isEmpty()){
-            SoundFile *file = soundFiles->takeFirst();
-            qDebug() << "Deleting entry " << file->getDescription() << " from sound file list...";
-            delete file;
-        }
-    }
 }
 
 
-void SoundFileList::add(SoundFile *file){
+void SoundFileList::add(const SoundFile &file){
     beginResetModel();
-    soundFiles->append(file);
-    connect(file, SIGNAL(changed()), this, SLOT(save()));
+    soundFiles.append(file);
+//    connect(file, SIGNAL(changed()), this, SLOT(save()));
     endResetModel();
     emit changed();
 }
 
-const QList<SoundFile *> * SoundFileList::getList(){
-    return soundFiles;
+const QList<SoundFile> * SoundFileList::getList(){
+    return &soundFiles;
 }
 
 void SoundFileList::move(int from, int to){
@@ -78,11 +68,11 @@ void SoundFileList::move(int from, int to){
         to = 0;
     }
 
-    if(to > soundFiles->size() - 1){
-        to = soundFiles->size() - 1;
+    if(to > soundFiles.size() - 1){
+        to = soundFiles.size() - 1;
     }
 
-    soundFiles->move(from, to);
+    soundFiles.move(from, to);
     endResetModel();
     emit moved(to);
 }
@@ -100,16 +90,17 @@ void SoundFileList::readFromCsv(QString filename){
         while(data != 0 && data.length() > 0){
             QStringList list = data.split(Constants::CSV_SEPARATOR);
 
-            SoundFile *sF = new SoundFile();
-            sF->setDescription(list.takeFirst());
-            sF->setFileName(list.takeFirst());
+            SoundFile sF;
+            sF.setDescription(list.takeFirst());
+            sF.setFileName(list.takeFirst());
             if(list.isEmpty()){
-                sF->setCategory("Default");
+                sF.setCategory("Default");
             }else{
-                sF->setCategory(list.takeFirst());
+                sF.setCategory(list.takeFirst());
             }
 
-            add(sF);
+            soundFiles.append(sF);
+//            connect(file, SIGNAL(changed()), this, SLOT(save()));
 
             data = stream.readLine();
         }
@@ -120,27 +111,27 @@ void SoundFileList::readFromCsv(QString filename){
     endResetModel();
 }
 
-void SoundFileList::remove(SoundFile *file){
+void SoundFileList::remove(SoundFile *file) {
     qDebug("Entering SoundFileList::remove()...");
     beginResetModel();
     disconnect(file, SIGNAL(changed()), this, SLOT(save()));
-    soundFiles->removeOne(file);
+    soundFiles.removeOne(*file);
     endResetModel();
     emit changed();
 }
 
-void SoundFileList::reset(){
+void SoundFileList::reset() {
     qDebug("Resetting SoundFileList model.");
     beginResetModel();
     endResetModel();
     emit changed();
 }
 
-void SoundFileList::save(){
+void SoundFileList::save() {
     writeToCsv(Constants::SOUNDLIST_FILE);
 }
 
-void SoundFileList::writeToCsv(QString filename){
+void SoundFileList::writeToCsv(QString filename) {
     qDebug("Writing list to file.");
     QFile file(filename);
 
@@ -148,10 +139,10 @@ void SoundFileList::writeToCsv(QString filename){
         qDebug("Success opening file for writing.");
         QTextStream stream(& file);
 
-        QList<SoundFile *>::iterator iter;
-        for(iter = soundFiles->begin(); iter != soundFiles->end(); iter++){
-            SoundFile *sF = *iter;
-            stream << sF->getDescription() << Constants::CSV_SEPARATOR << sF->getFileName() << Constants::CSV_SEPARATOR << sF->getCategory() << "\n";
+        QList<SoundFile>::iterator iter;
+        for(iter = soundFiles.begin(); iter != soundFiles.end(); iter++){
+            SoundFile sF = *iter;
+            stream << sF.getDescription() << Constants::CSV_SEPARATOR << sF.getFileName() << Constants::CSV_SEPARATOR << sF.getCategory() << "\n";
         }
 
         stream.flush();
@@ -162,24 +153,24 @@ void SoundFileList::writeToCsv(QString filename){
 }
 
 SoundFile* SoundFileList::at(int index){
-    return soundFiles->at(index);
+    return new SoundFile(soundFiles.at(index));
 }
 
 QVariant SoundFileList::data(const QModelIndex &index, int role) const{
-    if (index.row() < 0 || index.row() > soundFiles->count())
+    if (index.row() < 0 || index.row() > soundFiles.count())
         return QVariant();
 
-    SoundFile *file = soundFiles->at(index.row());
+    SoundFile file = soundFiles.at(index.row());
     if(role == DescriptionRole)
-        return file->getDescription();
+        return file.getDescription();
     else if (role == FileNameRole)
-        return file->getFileName();
+        return file.getFileName();
     else if (role == CategoryRole){
-        return file->getCategory();
+        return file.getCategory();
     }
     return QVariant();
 }
 
 int SoundFileList::rowCount(const QModelIndex &/*parent*/) const{
-    return soundFiles->count();
+    return soundFiles.count();
 }

@@ -24,20 +24,34 @@ SoundFile::SoundFile(QObject *parent) :
 {
 }
 
-SoundFile::~SoundFile() {
-    qDebug("Entering SoundFile::~SoundFile()...");
-    //FIXME: Clean up here..
+SoundFile::SoundFile(const SoundFile &obj, QObject *parent) :
+    QObject(parent)
+{
+    category = obj.getCategory();
+    description = obj.getDescription();
+    fileName = obj.getFileName();
 }
 
-QString SoundFile::getDescription(){
+SoundFile& SoundFile::operator = (const SoundFile &obj) {
+    category = obj.getCategory();
+    description = obj.getDescription();
+    fileName = obj.getFileName();
+    return *this;
+}
+
+bool SoundFile::operator == (const SoundFile &obj) {
+    return soundFileCompare(this, obj);
+}
+
+QString SoundFile::getDescription() const {
     return description;
 }
 
-QString SoundFile::getFileName(){
+QString SoundFile::getFileName() const {
     return fileName;
 }
 
-QString SoundFile::getCategory(){
+QString SoundFile::getCategory() const {
     return category;
 }
 
@@ -57,4 +71,17 @@ void SoundFile::setCategory(const QString category){
     this->category = category;
     emit categoryChanged(this->category);
     emit changed();
+}
+
+bool soundFileCompare(const SoundFile &e1, const SoundFile &e2){
+    if (e1.getCategory() != e2.getCategory()) {
+        return false;
+    }
+    if (e1.getDescription() != e2.getDescription()) {
+        return false;
+    }
+    if (e1.getFileName() != e2.getFileName()) {
+        return false;
+    }
+    return true;
 }
