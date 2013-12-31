@@ -15,8 +15,8 @@
    id="svg3031"
    version="1.1"
    inkscape:version="0.48.4 r9939"
-   sodipodi:docname="icon.svg"
-   inkscape:export-filename="/home/rc/qt_workspace/StultitiaSimplex/svg/icon.png"
+   sodipodi:docname="icon_harbour.svg"
+   inkscape:export-filename="/home/rc/repositories/private/qt/stultitiasimplex/res/sailfish/harbour-stultitiasimplex.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90">
   <defs
@@ -35,11 +35,11 @@
     <linearGradient
        id="linearGradient3789-6">
       <stop
-         style="stop-color:#ffb200;stop-opacity:1;"
+         style="stop-color:#ff6900;stop-opacity:1;"
          offset="0"
          id="stop3791-0" />
       <stop
-         style="stop-color:#fffc00;stop-opacity:1;"
+         style="stop-color:#ffcb00;stop-opacity:1;"
          offset="1"
          id="stop3793-4" />
     </linearGradient>
@@ -98,15 +98,16 @@
        inkscape:connector-curvature="0" />
     <g
        id="g3905"
-       transform="translate(2.7758317,0.43757322)">
+       transform="translate(2.7758317,0.43757322)"
+       style="fill:#ffffff">
       <text
          sodipodi:linespacing="125%"
          id="text3039"
          y="35.004471"
          x="14.077795"
-         style="font-size:54.75188065px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#666666;fill-opacity:1;stroke:none;font-family:Utopia;-inkscape-font-specification:Utopia"
+         style="font-size:54.75188064999999682px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Utopia;-inkscape-font-specification:Utopia"
          xml:space="preserve"><tspan
-           style="font-size:87.60300446px;fill:#666666"
+           style="font-size:87.60300445999999397px;fill:#ffffff"
            y="35.004471"
            x="14.077795"
            id="tspan3041"
@@ -116,9 +117,9 @@
          id="text3043"
          y="35.004471"
          x="47.711102"
-         style="font-size:54.75188065px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#666666;fill-opacity:1;stroke:none;font-family:Utopia;-inkscape-font-specification:Utopia"
+         style="font-size:54.75188064999999682px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Utopia;-inkscape-font-specification:Utopia"
          xml:space="preserve"><tspan
-           style="font-size:87.60300446px;fill:#666666"
+           style="font-size:87.60300445999999397px;fill:#ffffff"
            y="35.004471"
            x="47.711102"
            id="tspan3045"
