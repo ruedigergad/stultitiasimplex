@@ -41,7 +41,7 @@ public:
     explicit SoundFileList(QObject *parent = 0);
     ~SoundFileList();
 
-    void add(const SoundFile &file);
+    void add(QString description, QString fileName, QString category);
     const QList<SoundFile> *getList();
     void move(int from, int to);
     Q_INVOKABLE void remove(SoundFile *file);

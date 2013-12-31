@@ -72,13 +72,7 @@ SoundFile* SoundFileListSortFilterProxyModel::get(int index){
 }
 
 void SoundFileListSortFilterProxyModel::add(QString description, QString fileName, QString category){
-    SoundFile *soundFile = new SoundFile();
-
-    soundFile->setCategory(category);
-    soundFile->setDescription(description);
-    soundFile->setFileName(fileName);
-
-    soundFileList->add(soundFile);
+    soundFileList->add(description, fileName, category);
 }
 
 void SoundFileListSortFilterProxyModel::remove(int index) {

@@ -50,9 +50,15 @@ SoundFileList::~SoundFileList() {
 }
 
 
-void SoundFileList::add(const SoundFile &file){
+void SoundFileList::add(QString description, QString fileName, QString category){
     beginResetModel();
-    soundFiles.append(file);
+    SoundFile soundFile;
+
+    soundFile.setCategory(category);
+    soundFile.setDescription(description);
+    soundFile.setFileName(fileName);
+
+    soundFiles.append(soundFile);
     endResetModel();
     emit changed();
 }
