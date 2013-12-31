@@ -17,6 +17,7 @@
  *  along with StultitiaSimplex.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import QtMultimedia 5.0
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 import harbour.stultitiasimplex 1.0
@@ -61,11 +62,18 @@ ApplicationWindow {
         }
     }
 
-    QmlAudioPlayer {
-        id: player
-        onStarted: abortDialog.open()
-        onFinished: abortDialog.close()
+    MediaPlayer {
+        id: mediaPlayer
+
+        onPlaying: abortDialog.open()
+        onStopped: abortDialog.close()
     }
+
+//    QmlAudioPlayer {
+//        id: player
+//        onStarted: abortDialog.open()
+//        onFinished: abortDialog.close()
+//    }
 
     QmlAudioRecorder {
         id: recorder
@@ -101,12 +109,13 @@ ApplicationWindow {
         }
 
         onAccepted: {
-            player.abort()
+            console.log("Aborting playback.")
+            mediaPlayer.stop()
         }
 
         onRejected: {
             console.log("Aborting playback.")
-            player.abort()
+            mediaPlayer.stop()
         }
     }
 

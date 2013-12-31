@@ -63,7 +63,8 @@ SilicaListView {
             soundFileListView.currentIndex = index
             console.log("Selected: " + description)
             console.log("File name: " + fileName)
-            player.play(fileName)
+            mediaPlayer.source = "/home/nemo/.stultitiaSimplex/sounds/" + fileName
+            mediaPlayer.play()
         }
 
         onPressAndHold: {
@@ -79,15 +80,6 @@ SilicaListView {
     Component {
         id: contextMenuComponent
         ContextMenu {
-            MenuItem {
-                text: "Play Sound"
-
-                onClicked: {
-                    console.log("Play...")
-                    player.play(soundFileList.get(soundFileListView.currentIndex).fileName)
-                }
-            }
-
             MenuItem {
                 text: "Edit Sound"
 
@@ -189,7 +181,5 @@ SilicaListView {
             onClicked: soundFileListView.scrollToTop()
         }
     }
-
-    MediaPlayer { id: mediaPlayer }
 }
 
