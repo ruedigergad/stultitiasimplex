@@ -23,6 +23,7 @@
 #include <QObject>
 #include <QStringList>
 #include <QtMultimedia/QAudioBuffer>
+#include <QtMultimedia/QAudioProbe>
 #include <QtMultimedia/QAudioRecorder>
 
 class QMultimediaAudioRecorder : public QObject
@@ -46,6 +47,7 @@ private slots:
     void updateVuMeter(QAudioBuffer aBuf);
 
 private:
+    QAudioProbe *m_audioProbe;
     QAudioRecorder *m_audioRecorder;
     QStringList m_audioInputs;
 

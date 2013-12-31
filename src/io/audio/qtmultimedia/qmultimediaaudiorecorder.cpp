@@ -20,6 +20,7 @@
 #include "qmultimediaaudiorecorder.h"
 
 #include <QDebug>
+#include <QUrl>
 
 QMultimediaAudioRecorder::QMultimediaAudioRecorder(QObject *parent) :
     QObject(parent)
@@ -35,9 +36,34 @@ QMultimediaAudioRecorder::QMultimediaAudioRecorder(QObject *parent) :
 
     qDebug() << "Supported audio codecs: " << m_audioRecorder->supportedAudioCodecs();
     qDebug() << "Supported containers: " << m_audioRecorder->supportedContainers();
+
+
+
+    QAudioEncoderSettings audioSettings;
+    audioSettings.setCodec("audio/vorbis");
+    audioSettings.setQuality(QMultimedia::NormalQuality);
+
+    m_audioRecorder->setEncodingSettings(audioSettings);
+    m_audioRecorder->setContainerFormat("ogg");
+    m_audioRecorder->setAudioInput(m_audioRecorder->defaultAudioInput());
+
+    m_audioProbe = new QAudioProbe();
+    if (m_audioProbe->setSource(m_audioRecorder)) {
+        if (m_audioProbe->isActive()) {
+            qDebug("Connecting probe.");
+            connect(m_audioProbe, SIGNAL(audioBufferProbed(QAudioBuffer)), this, SLOT(updateVuMeter(QAudioBuffer)));
+        } else {
+            qDebug("Probe is inactive.");
+        }
+    } else {
+        qDebug("Failed to setSource for probe.");
+    }
 }
 
 QMultimediaAudioRecorder::~QMultimediaAudioRecorder() {
+    qDebug("QMultimediaAudioRecorder::~QMultimediaAudioRecorder()");
+    disconnect(m_audioProbe, SIGNAL(audioBufferProbed(QAudioBuffer)), this, SLOT(updateVuMeter(QAudioBuffer)));
+    delete m_audioProbe;
     delete m_audioRecorder;
 }
 
@@ -50,13 +76,21 @@ void QMultimediaAudioRecorder::disconnectAudio() {
 }
 
 void QMultimediaAudioRecorder::startRecord(QString fileName) {
-
+    qDebug() << "Recording, fileName: " << fileName;
+    m_audioRecorder->setOutputLocation(QUrl(fileName));
+    qDebug() << "Recording to: " << m_audioRecorder->outputLocation();
+    m_audioRecorder->record();
+    qDebug() << "Recorder mute state: " << m_audioRecorder->isMuted();
+    qDebug() << "Recorder volume: " << m_audioRecorder->volume();
 }
 
 void QMultimediaAudioRecorder::stopRecord() {
-
+    m_audioRecorder->stop();
 }
 
 void QMultimediaAudioRecorder::updateVuMeter(QAudioBuffer aBuf) {
-
+//    qDebug() << "Got audio buffer."
+//             << "Format: " << aBuf.format();
+    const float sample = qAbs(*reinterpret_cast<const float*>(aBuf.constData()));
+    emit vuMeterValueUpdate(sample);
 }

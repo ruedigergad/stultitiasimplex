@@ -30,16 +30,16 @@ Dialog {
             console.log("Connecting audio...")
             vuMeter.value = 0
             fileName.text = ""
-            recorder.connectAudio(0)
+//            recorder.connectAudio(0)
         }else if(status === DialogStatus.Closing){
             console.log("Disconnecting audio...")
-            recorder.disconnectAudio()
+//            recorder.disconnectAudio()
             vuMeter.value = 0
         }
     }
 
     Connections {
-        target: recorder
+        target: recorder2
         onVuMeterValueUpdate: {
 //            console.log("VU-meter value updated: " + value)
             vuMeter.value = value
@@ -96,11 +96,21 @@ Dialog {
 
                 anchors {
                     left: parent.left
+                    leftMargin: 6
                     top: parent.top
+                    topMargin: 6
                     bottom: parent.bottom
+                    bottomMargin: 6
                 }
+            }
 
-                width: parent.width * vuMeter.value
+            onValueChanged: {
+                var val = parent.width * vuMeter.value * 3
+                if (val >= parent.width - 12) {
+                    indicator.width = parent.width - 12
+                } else {
+                    indicator.width = val
+                }
             }
         }
 
@@ -132,7 +142,7 @@ Dialog {
                     closeButton.enabled = false
                     startRecordButton.enabled = false
                     stopRecordButton.enabled = true
-                    recorder.startRecord(fileName.text)
+                    recorder2.startRecord("/home/nemo/.stultitiaSimplex/sounds/" + fileName.text + ".ogg")
                 }
             }
 
@@ -143,11 +153,12 @@ Dialog {
                 text: "Stop"
 
                 onClicked: {
-                    recorder.stopRecord()
+                    recorder2.stopRecord()
                     stopRecordButton.enabled = false
                     startRecordButton.enabled = true
                     closeButton.enabled = true
                     vuMeter.recording = false
+                    vuMeter.value = 0
                 }
             }
         }
