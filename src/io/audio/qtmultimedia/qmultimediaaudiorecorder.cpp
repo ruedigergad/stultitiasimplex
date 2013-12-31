@@ -32,6 +32,9 @@ QMultimediaAudioRecorder::QMultimediaAudioRecorder(QObject *parent) :
     foreach (QString input, m_audioInputs) {
         qDebug() << input << ": " << m_audioRecorder->audioInputDescription(input);
     }
+
+    qDebug() << "Supported audio codecs: " << m_audioRecorder->supportedAudioCodecs();
+    qDebug() << "Supported containers: " << m_audioRecorder->supportedContainers();
 }
 
 QMultimediaAudioRecorder::~QMultimediaAudioRecorder() {

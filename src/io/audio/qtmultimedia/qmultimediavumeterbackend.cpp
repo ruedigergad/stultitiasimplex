@@ -35,6 +35,18 @@ QMultimediaVuMeterBackend::QMultimediaVuMeterBackend(QObject *parent) :
                  << "\nByte Orders: " << inputDev.supportedByteOrders()
                  << "\nChannel Counts: " << inputDev.supportedChannelCounts();
     }
+
+    QAudioDeviceInfo defaultInput = QAudioDeviceInfo::defaultInputDevice();
+    if (! defaultInput.isNull()) {
+        qDebug() << "Default Input Device: " << defaultInput.deviceName()
+                 << "\nCodecs: " << defaultInput.supportedCodecs()
+                 << "\nSample Rates: " << defaultInput.supportedSampleRates()
+                 << "\nSample Sizes: " << defaultInput.supportedSampleSizes()
+                 << "\nByte Orders: " << defaultInput.supportedByteOrders()
+                 << "\nChannel Counts: " << defaultInput.supportedChannelCounts();
+    } else {
+        qDebug("Default audio input device is null.");
+    }
 }
 
 QMultimediaVuMeterBackend::~QMultimediaVuMeterBackend() {
