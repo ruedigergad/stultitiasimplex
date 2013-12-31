@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="86"
+   height="86"
+   id="svg3031"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="icon.svg"
+   inkscape:export-filename="/home/rc/qt_workspace/StultitiaSimplex/svg/icon.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
+  <defs
+     id="defs3033">
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3789-6"
+       id="linearGradient3922"
+       gradientUnits="userSpaceOnUse"
+       spreadMethod="reflect"
+       x1="45"
+       y1="10"
+       x2="45"
+       y2="80"
+       gradientTransform="matrix(-0.95555556,0,0,-0.95555556,86,90)" />
+    <linearGradient
+       id="linearGradient3789-6">
+      <stop
+         style="stop-color:#ffb200;stop-opacity:1;"
+         offset="0"
+         id="stop3791-0" />
+      <stop
+         style="stop-color:#fffc00;stop-opacity:1;"
+         offset="1"
+         id="stop3793-4" />
+    </linearGradient>
+    <linearGradient
+       y2="80"
+       x2="45"
+       y1="10"
+       x1="45"
+       spreadMethod="reflect"
+       gradientTransform="matrix(-0.93984208,0,0,-0.93984208,85.292893,47.292893)"
+       gradientUnits="userSpaceOnUse"
+       id="linearGradient3109"
+       xlink:href="#linearGradient3789-6"
+       inkscape:collect="always" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="4.9497475"
+     inkscape:cx="32.168027"
+     inkscape:cy="48.389834"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     inkscape:grid-bbox="true"
+     inkscape:document-units="px"
+     inkscape:window-width="1366"
+     inkscape:window-height="721"
+     inkscape:window-x="-2"
+     inkscape:window-y="-3"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata3036">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1"
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     transform="translate(0,38)">
+    <path
+       style="fill:url(#linearGradient3109);fill-opacity:1;stroke:none;display:inline"
+       d="m 43,47.292893 c 23.35772,0 42.292893,-18.935174 42.292893,-42.2928932 l 0,-40.1195088 c 0,-1.208172 -0.965212,-2.173384 -2.173384,-2.173384 l -40.119509,0 c -23.357719,0 -42.29289295,18.935173 -42.29289295,42.2928928 C 0.70710705,28.357719 19.642281,47.292893 43,47.292893 z"
+       id="rect3059"
+       inkscape:connector-curvature="0" />
+    <g
+       id="g3905"
+       transform="translate(2.7758317,0.43757322)">
+      <text
+         sodipodi:linespacing="125%"
+         id="text3039"
+         y="35.004471"
+         x="14.077795"
+         style="font-size:54.75188065px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#666666;fill-opacity:1;stroke:none;font-family:Utopia;-inkscape-font-specification:Utopia"
+         xml:space="preserve"><tspan
+           style="font-size:87.60300446px;fill:#666666"
+           y="35.004471"
+           x="14.077795"
+           id="tspan3041"
+           sodipodi:role="line">?</tspan></text>
+      <text
+         sodipodi:linespacing="125%"
+         id="text3043"
+         y="35.004471"
+         x="47.711102"
+         style="font-size:54.75188065px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#666666;fill-opacity:1;stroke:none;font-family:Utopia;-inkscape-font-specification:Utopia"
+         xml:space="preserve"><tspan
+           style="font-size:87.60300446px;fill:#666666"
+           y="35.004471"
+           x="47.711102"
+           id="tspan3045"
+           sodipodi:role="line">!</tspan></text>
+    </g>
+  </g>
+</svg>

@@ -19,6 +19,7 @@
 
 
 #if defined(MEEGO_EDITION_HARMATTAN) || defined(MER_EDITION_SAILFISH)
+#include <QDir>
 #include <QGuiApplication>
 #include <QQuickView>
 #include <QQuickWindow>
@@ -40,6 +41,10 @@
 #if defined(MEEGO_EDITION_HARMATTAN) || defined(MER_EDITION_SAILFISH)
 Q_DECL_EXPORT int main(int argc, char *argv[])
 {
+    if (! QDir().exists("/home/nemo/.stultitiaSimplex")) {
+        QDir().mkpath("/home/nemo/.stultitiaSimplex/sounds");
+    }
+
     QQuickWindow::setDefaultAlphaBuffer(true);
 
     QGuiApplication *app = new QGuiApplication(argc, argv);
