@@ -71,6 +71,14 @@ ApplicationWindow {
         id: recorder
     }
 
+    QMultimediaAudioRecorder {
+        id: recorder2
+    }
+
+    QMultimediaVuMeterBackend {
+        id: vuMeterBackend
+    }
+
     FileSystemHelper {
         id: fileSystemHelper
     }

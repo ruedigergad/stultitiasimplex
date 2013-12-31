@@ -16,7 +16,7 @@ win32:LIBS += -Llib -llibportaudio-2 -llibsndfile-1
 
 win32:RC_FILE = res/windows/StultitiaSimplex.rc
 
-QT += core gui
+QT += core gui multimedia
 
 TARGET = StultitiaSimplex
 TEMPLATE = app
@@ -36,7 +36,9 @@ SOURCES += \
     src/qml/filesystemhelper.cpp \
     src/qml/qmlsettingsadapter.cpp \
     src/qml/soundfilelistsortfilterproxymodel.cpp \
-    src/qml/qmlaudiorecorder.cpp
+    src/qml/qmlaudiorecorder.cpp \
+    src/io/audio/qtmultimedia/qmultimediaaudiorecorder.cpp \
+    src/io/audio/qtmultimedia/qmultimediavumeterbackend.cpp
 
 
 unix:SOURCES += \
@@ -65,7 +67,9 @@ HEADERS += \
     src/qml/filesystemhelper.h \
     src/qml/qmlsettingsadapter.h \
     src/qml/soundfilelistsortfilterproxymodel.h \
-    src/qml/qmlaudiorecorder.h
+    src/qml/qmlaudiorecorder.h \
+    src/io/audio/qtmultimedia/qmultimediaaudiorecorder.h \
+    src/io/audio/qtmultimedia/qmultimediavumeterbackend.h
 
 
 unix:HEADERS += \
