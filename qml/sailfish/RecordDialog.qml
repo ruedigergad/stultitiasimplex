@@ -40,7 +40,7 @@ Dialog {
     }
 
     Connections {
-        target: recorder2
+        target: recorder
         onVuMeterValueUpdate: {
 //            console.log("VU-meter value updated: " + value)
             vuMeter.value = value
@@ -151,7 +151,7 @@ Dialog {
                     closeButton.enabled = false
                     startRecordButton.enabled = false
                     stopRecordButton.enabled = true
-                    recorder2.startRecord("/home/nemo/.stultitiaSimplex/sounds/" + fileName.text + ".ogg")
+                    recorder.startRecord("/home/nemo/.stultitiaSimplex/sounds/" + fileName.text + ".ogg")
                 }
             }
 
@@ -162,7 +162,7 @@ Dialog {
                 text: "Stop"
 
                 onClicked: {
-                    recorder2.stopRecord()
+                    recorder.stopRecord()
                     stopRecordButton.enabled = false
                     startRecordButton.enabled = true
                     closeButton.enabled = true

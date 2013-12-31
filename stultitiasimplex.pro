@@ -4,12 +4,12 @@
 #
 #-------------------------------------------------
 
-unix:CONFIG += link_pkgconfig
+#unix:CONFIG += link_pkgconfig
 
-PKGCONFIG += sndfile audioresource
+#PKGCONFIG += sndfile audioresource
 
 win32:PKGCONFIG += portaudio-2.0
-unix:PKGCONFIG += libpulse libpulse-simple
+#unix:PKGCONFIG += libpulse libpulse-simple
 
 win32:INCLUDEPATH += lib_include
 win32:LIBS += -Llib -llibportaudio-2 -llibsndfile-1
@@ -29,25 +29,25 @@ SOURCES += \
     src/main.cpp\
     src/data/soundfile.cpp \
     src/data/soundfilelist.cpp \
-    src/io/audio/audioplayer.cpp \
-    src/io/audio/abstractaudioplayerbackend.cpp \
-    src/io/audio/abstractaudiorecorderbackend.cpp \
-    src/qml/qmlaudioplayer.cpp \
     src/qml/filesystemhelper.cpp \
     src/qml/qmlsettingsadapter.cpp \
     src/qml/soundfilelistsortfilterproxymodel.cpp \
-    src/qml/qmlaudiorecorder.cpp \
     src/io/audio/qtmultimedia/qmultimediaaudiorecorder.cpp \
     src/io/audio/qtmultimedia/qmultimediavumeterbackend.cpp
 
+#    src/io/audio/audioplayer.cpp \
+#    src/io/audio/abstractaudioplayerbackend.cpp \
+#    src/io/audio/abstractaudiorecorderbackend.cpp \
+#    src/qml/qmlaudioplayer.cpp \
+#    src/qml/qmlaudiorecorder.cpp \
 
-unix:SOURCES += \
-    src/io/audio/pulseaudio/pa_context_helper.cpp \
-    src/io/audio/pulseaudio/pa_streams_helper.cpp \
-    src/io/audio/pulseaudio/pa_utils.cpp \
-    src/io/audio/pulseaudio/pa_volume_helper.cpp \
-    src/io/audio/pulseaudio/pulseaudioplayerbackend.cpp \
-    src/io/audio/pulseaudio/pulseaudiorecordbackend.cpp \
+#unix:SOURCES += \
+#    src/io/audio/pulseaudio/pa_context_helper.cpp \
+#    src/io/audio/pulseaudio/pa_streams_helper.cpp \
+#    src/io/audio/pulseaudio/pa_utils.cpp \
+#    src/io/audio/pulseaudio/pa_volume_helper.cpp \
+#    src/io/audio/pulseaudio/pulseaudioplayerbackend.cpp \
+#    src/io/audio/pulseaudio/pulseaudiorecordbackend.cpp \
 
 
 win32:SOURCES += \
@@ -60,25 +60,25 @@ HEADERS += \
     src/constants.h \
     src/data/soundfile.h \
     src/data/soundfilelist.h \
-    src/io/audio/audioplayer.h \
-    src/io/audio/abstractaudioplayerbackend.h \
-    src/io/audio/abstractaudiorecorderbackend.h \
-    src/qml/qmlaudioplayer.h \
     src/qml/filesystemhelper.h \
     src/qml/qmlsettingsadapter.h \
     src/qml/soundfilelistsortfilterproxymodel.h \
-    src/qml/qmlaudiorecorder.h \
     src/io/audio/qtmultimedia/qmultimediaaudiorecorder.h \
     src/io/audio/qtmultimedia/qmultimediavumeterbackend.h
 
+#    src/io/audio/audioplayer.h \
+#    src/io/audio/abstractaudioplayerbackend.h \
+#    src/io/audio/abstractaudiorecorderbackend.h \
+#    src/qml/qmlaudioplayer.h \
+#    src/qml/qmlaudiorecorder.h \
 
-unix:HEADERS += \
-    src/io/audio/pulseaudio/pa_context_helper.h \
-    src/io/audio/pulseaudio/pa_streams_helper.h \
-    src/io/audio/pulseaudio/pa_utils.h \
-    src/io/audio/pulseaudio/pa_volume_helper.h \
-    src/io/audio/pulseaudio/pulseaudioplayerbackend.h \
-    src/io/audio/pulseaudio/pulseaudiorecordbackend.h \
+#unix:HEADERS += \
+#    src/io/audio/pulseaudio/pa_context_helper.h \
+#    src/io/audio/pulseaudio/pa_streams_helper.h \
+#    src/io/audio/pulseaudio/pa_utils.h \
+#    src/io/audio/pulseaudio/pa_volume_helper.h \
+#    src/io/audio/pulseaudio/pulseaudioplayerbackend.h \
+#    src/io/audio/pulseaudio/pulseaudiorecordbackend.h \
 
 
 win32:HEADERS += \
@@ -105,8 +105,8 @@ exists("/usr/lib/qt5/qml/Sailfish/Silica/SilicaGridView.qml"): {
     DEFINES += SYNC_TO_IMAP_SUPPORT
     MER_EDITION = sailfish
 
-    CONFIG += link_pkgconfig
-    PKGCONFIG += sailfishapp
+#    CONFIG += link_pkgconfig
+#    PKGCONFIG += sailfishapp
 
     QT += quick qml
 
@@ -150,8 +150,6 @@ exists("/usr/lib/qt5/qml/Sailfish/Silica/SilicaGridView.qml"): {
     splash.files += res/svg/splash.png
 
     INSTALLS += target desktop icon qml splash
-} else:simulator {
-    DEFINES += NFC_ENABLED
 } else:unix {
     SOURCES += src/ui/dialog/editbuttondialog.cpp \
         src/ui/mainwindow.cpp \

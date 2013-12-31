@@ -69,18 +69,8 @@ ApplicationWindow {
         onStopped: abortDialog.close()
     }
 
-//    QmlAudioPlayer {
-//        id: player
-//        onStarted: abortDialog.open()
-//        onFinished: abortDialog.close()
-//    }
-
-    QmlAudioRecorder {
-        id: recorder
-    }
-
     QMultimediaAudioRecorder {
-        id: recorder2
+        id: recorder
     }
 
     QMultimediaVuMeterBackend {

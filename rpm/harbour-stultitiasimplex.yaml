@@ -1,23 +1,27 @@
 Name: harbour-stultitiasimplex
-Summary: A Simple Soundboard
-Version: 1.3.1
+Summary: A Simple Soundboard and Soundrecorder
+Version: 2.0.0
 Release: 1
 Group: Qt/Qt
 License: GPLv3
 Sources:
 - '%{name}-%{version}.tar.bz2'
 Description: |
-  StultitiaSimples is a simple soundboard to annoy your friends and colleagues.
+  StultitiaSimples is a simple soundboard to annoy your friends.
+  It features simple recording functionality.
+  The recorded sound snippets can then be arranged in a list and played back on double-click.
+  Furthermore, you can add your own sounds as well.
 Configure: none
 Builder: qtc5
 PkgConfigBR:
-- Qt5Qml
 - Qt5Core
+- Qt5Multimedia
+- Qt5Qml
 - Qt5Quick
-- libpulse
-- libpulse-simple
-- sndfile
-- audioresource
+  #- libpulse
+  #- libpulse-simple
+  #- sndfile
+  #- audioresource
   #- sailfishapp >= 0.0.10
 PkgBR: []
 Requires: []

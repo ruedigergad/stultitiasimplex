@@ -28,11 +28,9 @@
 #include "src/data/soundfilelist.h"
 #include "src/io/audio/qtmultimedia/qmultimediaaudiorecorder.h"
 #include "src/io/audio/qtmultimedia/qmultimediavumeterbackend.h"
-//#include "src/qml/qmlaudioplayer.h"
 #include "src/qml/filesystemhelper.h"
 #include "src/qml/qmlsettingsadapter.h"
 #include "src/qml/soundfilelistsortfilterproxymodel.h"
-#include "src/qml/qmlaudiorecorder.h"
 #else
 #include <QtGui/QApplication>
 #include "src/ui/mainwindow.h"
@@ -49,8 +47,6 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 
     qmlRegisterType<SoundFile>("harbour.stultitiasimplex", 1, 0, "SoundFile");
     qmlRegisterType<SoundFileList>("harbour.stultitiasimplex", 1, 0, "SoundFileList");
-//    qmlRegisterType<QmlAudioPlayer>("harbour.stultitiasimplex", 1, 0, "QmlAudioPlayer");
-    qmlRegisterType<QmlAudioRecorder>("harbour.stultitiasimplex", 1, 0, "QmlAudioRecorder");
     qmlRegisterType<QMultimediaAudioRecorder>("harbour.stultitiasimplex", 1, 0, "QMultimediaAudioRecorder");
     qmlRegisterType<QMultimediaVuMeterBackend>("harbour.stultitiasimplex", 1, 0, "QMultimediaVuMeterBackend");
     qmlRegisterType<FileSystemHelper>("harbour.stultitiasimplex", 1, 0, "FileSystemHelper");
