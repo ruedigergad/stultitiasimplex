@@ -161,13 +161,13 @@ SilicaListView {
             }
         }
 
-        MenuItem {
-            text: "Settings"
-            onClicked: {
-                console.log("Settings...")
-                settingsSheet.open()
-            }
-        }
+//        MenuItem {
+//            text: "Settings"
+//            onClicked: {
+//                console.log("Settings...")
+//                settingsSheet.open()
+//            }
+//        }
 
         MenuItem {
             text: "About"
