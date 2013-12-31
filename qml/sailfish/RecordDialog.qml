@@ -30,6 +30,7 @@ Dialog {
             console.log("Connecting audio...")
             vuMeter.value = 0
             fileName.text = ""
+            startRecordButton.enabled = false
 //            recorder.connectAudio(0)
         }else if(status === DialogStatus.Closing){
             console.log("Disconnecting audio...")
@@ -120,6 +121,14 @@ Dialog {
 
             anchors.centerIn: parent
             width: parent.width
+
+            onTextChanged: {
+                if (text && text !== "") {
+                    startRecordButton.enabled = true
+                }
+            }
+
+            placeholderText: "Name for Recording (without .ogg)"
         }
 
         Row {
