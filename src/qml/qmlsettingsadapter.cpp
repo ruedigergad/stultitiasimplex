@@ -23,11 +23,17 @@
 QmlSettingsAdapter::QmlSettingsAdapter(QObject *parent) :
     QObject(parent)
 {
-    if (getString("cover_action_1").isNull()) {
-        set("cover_action_1", "");
+    if (getString("cover_action_1_description").isNull()) {
+        set("cover_action_1_description", "");
     }
-    if (getString("cover_action_2").isNull()) {
-        set("cover_action_2", "");
+    if (getString("cover_action_1_file_name").isNull()) {
+        set("cover_action_1_file_name", "");
+    }
+    if (getString("cover_action_2_description").isNull()) {
+        set("cover_action_2_description", "");
+    }
+    if (getString("cover_action_2_file_name").isNull()) {
+        set("cover_action_2_file_name", "");
     }
 }
 
@@ -48,6 +54,7 @@ void QmlSettingsAdapter::set(QString key, QVariant val){
     QSettings settings;
     settings.setValue(key, val);
     settings.sync();
+    emit settingsChanged();
 }
 
 QString QmlSettingsAdapter::getString(QString key) {

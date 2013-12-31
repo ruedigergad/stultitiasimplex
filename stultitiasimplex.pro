@@ -123,8 +123,10 @@ exists("/usr/lib/qt5/qml/Sailfish/Silica/SilicaGridView.qml"): {
     icon.path = /usr/share/icons/hicolor/86x86/apps
     qml.files += qml/sailfish/*
     qml.path = /usr/share/harbour-stultitiasimplex/qml
+    coverIcon.files += res/sailfish/cover_icon.png
+    coverIcon.path = /usr/share/harbour-stultitiasimplex
 
-    INSTALLS += target desktop icon qml
+    INSTALLS += target desktop icon qml coverIcon
 } else:exists($$QMAKE_INCDIR_QT"/../applauncherd/MDeclarativeCache"): {
     MEEGO_VERSION_MAJOR     = 1
     MEEGO_VERSION_MINOR     = 2

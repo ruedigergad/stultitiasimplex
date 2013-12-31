@@ -43,6 +43,58 @@ ApplicationWindow {
         }
     }
 
+    cover: CoverBackground {
+        id: coverBackground
+
+        property string fileName1: ""
+        property string fileName2: ""
+        property alias description1: action1Label.text
+        property alias description2: action2Label.text
+
+        Image {
+            id: coverIcon
+
+            anchors { horizontalCenter: parent.horizontalCenter; top: parent.top; topMargin: 40}
+            source: "/usr/share/harbour-stultitiasimplex/cover_icon.png"
+        }
+
+        Label {
+            id: action1Label
+
+            anchors {top: coverIcon.bottom; topMargin: 40
+                     left: parent.left; leftMargin: 10
+                     right: parent.right; rightMargin: 30}
+            color: Theme.primaryColor
+            horizontalAlignment: Text.AlignLeft
+            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+        }
+
+        Label {
+            id: action2Label
+
+            anchors {top: action1Label.bottom; topMargin: 40
+                     left: parent.left; leftMargin: 40
+                     right: parent.right; rightMargin: 30}
+            color: Theme.primaryColor
+            horizontalAlignment: Text.AlignRight
+            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+        }
+
+        CoverActionList {
+            enabled: mediaPlayer.playbackState != MediaPlayer.PlayingState
+                     && coverBackground.fileName1 != ""
+                     && coverBackground.fileName2 != ""
+
+            CoverAction {
+                onTriggered: mediaPlayer.playSoundFile(coverBackground.fileName1)
+            }
+
+            CoverAction {
+                onTriggered: mediaPlayer.playSoundFile(coverBackground.fileName2)
+            }
+        }
+    }
+
     SoundFileListSortFilterProxyModel {
         id: soundFileList
 
@@ -67,6 +119,11 @@ ApplicationWindow {
 
         onPlaying: abortDialog.open()
         onStopped: abortDialog.close()
+
+        function playSoundFile(fileName) {
+            mediaPlayer.source = "/home/nemo/.stultitiaSimplex/sounds/" + fileName
+            mediaPlayer.play()
+        }
     }
 
     QMultimediaAudioRecorder {
@@ -128,6 +185,19 @@ ApplicationWindow {
 
     QmlSettingsAdapter {
         id: qmlSettingsAdapter
+
+        onSettingsChanged: applyCoverSettings()
+
+        function applyCoverSettings() {
+            coverBackground.description1 = qmlSettingsAdapter.getString("cover_action_1_description")
+            coverBackground.fileName1 = qmlSettingsAdapter.getString("cover_action_1_file_name")
+            coverBackground.description2 = qmlSettingsAdapter.getString("cover_action_2_description")
+            coverBackground.fileName2 = qmlSettingsAdapter.getString("cover_action_2_file_name")
+        }
     }
 
+    Component.onCompleted: {
+        qmlSettingsAdapter.applyCoverSettings()
+        mediaPlayer.source = ""
+    }
 }

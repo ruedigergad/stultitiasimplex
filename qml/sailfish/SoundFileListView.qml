@@ -63,8 +63,7 @@ SilicaListView {
             soundFileListView.currentIndex = index
             console.log("Selected: " + description)
             console.log("File name: " + fileName)
-            mediaPlayer.source = "/home/nemo/.stultitiaSimplex/sounds/" + fileName
-            mediaPlayer.play()
+            mediaPlayer.playSoundFile(fileName)
         }
 
         onPressAndHold: {
@@ -99,6 +98,26 @@ SilicaListView {
 
                 onClicked: {
                     soundFileListView.currentItem.triggerRemorseDeleteItem();
+                }
+            }
+
+            MenuItem {
+                text: "Set Cover Action 1"
+
+                onClicked: {
+                    var itm = soundFileList.get(soundFileListView.currentIndex)
+                    qmlSettingsAdapter.set("cover_action_1_description", itm.description)
+                    qmlSettingsAdapter.set("cover_action_1_file_name", itm.fileName)
+                }
+            }
+
+            MenuItem {
+                text: "Set Cover Action 2"
+
+                onClicked: {
+                    var itm = soundFileList.get(soundFileListView.currentIndex)
+                    qmlSettingsAdapter.set("cover_action_2_description", itm.description)
+                    qmlSettingsAdapter.set("cover_action_2_file_name", itm.fileName)
                 }
             }
         }
@@ -141,6 +160,19 @@ SilicaListView {
 
     PullDownMenu {
         MenuItem {
+            text: "About"
+            onClicked: aboutDialog.open()
+        }
+
+        MenuItem {
+            text: "Record Sound"
+            onClicked: {
+                console.log("Record...")
+                recordDialog.open()
+            }
+        }
+
+        MenuItem {
             text: "Add Sound"
 
             onClicked: {
@@ -153,14 +185,6 @@ SilicaListView {
             }
         }
 
-        MenuItem {
-            text: "Record Sound"
-            onClicked: {
-                console.log("Record...")
-                recordDialog.open()
-            }
-        }
-
 //        MenuItem {
 //            text: "Settings"
 //            onClicked: {
@@ -169,10 +193,6 @@ SilicaListView {
 //            }
 //        }
 
-        MenuItem {
-            text: "About"
-            onClicked: aboutDialog.open()
-        }
     }
 
     PushUpMenu {

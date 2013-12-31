@@ -35,6 +35,7 @@ public:
     Q_INVOKABLE QString getString(QString kex);
     
 signals:
+    void settingsChanged();
     
 public slots:
     void set(QString key, QVariant val);
