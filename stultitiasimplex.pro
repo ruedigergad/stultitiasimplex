@@ -105,8 +105,9 @@ exists("/usr/lib/qt5/qml/Sailfish/Silica/SilicaGridView.qml"): {
     DEFINES += SYNC_TO_IMAP_SUPPORT
     MER_EDITION = sailfish
 
-#    CONFIG += link_pkgconfig
-#    PKGCONFIG += sailfishapp
+    CONFIG += link_pkgconfig
+    PKGCONFIG += sailfishapp
+    INCLUDEPATH += /usr/include/sailfishapp
 
     QT += quick qml
 

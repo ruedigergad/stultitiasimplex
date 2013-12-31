@@ -37,6 +37,9 @@
 #include "src/ui/mainwindow.h"
 #endif
 
+#if defined(MER_EDITION_SAILFISH)
+#include <sailfishapp.h>
+#endif
 
 #if defined(MEEGO_EDITION_HARMATTAN) || defined(MER_EDITION_SAILFISH)
 Q_DECL_EXPORT int main(int argc, char *argv[])
@@ -45,10 +48,13 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
         QDir().mkpath("/home/nemo/.stultitiaSimplex/sounds");
     }
 
-    QQuickWindow::setDefaultAlphaBuffer(true);
-
+#if defined(MER_EDITION_SAILFISH)
+    QGuiApplication *app = SailfishApp::application(argc, argv);
+    QQuickView *view = SailfishApp::createView();
+#else
     QGuiApplication *app = new QGuiApplication(argc, argv);
     QQuickView *view = new QQuickView();
+#endif
 
     qmlRegisterType<SoundFile>("harbour.stultitiasimplex", 1, 0, "SoundFile");
     qmlRegisterType<SoundFileList>("harbour.stultitiasimplex", 1, 0, "SoundFileList");

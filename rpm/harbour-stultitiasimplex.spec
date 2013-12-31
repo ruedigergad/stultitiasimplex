@@ -23,6 +23,7 @@ BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Multimedia)
 BuildRequires:  pkgconfig(Qt5Qml)
 BuildRequires:  pkgconfig(Qt5Quick)
+BuildRequires:  pkgconfig(sailfishapp) >= 0.0.10
 
 %description
 StultitiaSimples is a simple soundboard to annoy your friends.
