@@ -73,8 +73,8 @@ ApplicationWindow {
             id: action2Label
 
             anchors {top: action1Label.bottom; topMargin: 40
-                     left: parent.left; leftMargin: 40
-                     right: parent.right; rightMargin: 30}
+                     left: parent.left; leftMargin: 30
+                     right: parent.right; rightMargin: 10}
             color: Theme.primaryColor
             horizontalAlignment: Text.AlignRight
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
