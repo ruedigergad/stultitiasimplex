@@ -145,9 +145,9 @@ SilicaListView {
 
             onClicked: {
                 console.log("Add...")
-                editSoundFileSheet.category = ""
+                editSoundFileSheet.category = "Please chose a category."
                 editSoundFileSheet.description = ""
-                editSoundFileSheet.fileName = ""
+                editSoundFileSheet.fileName = "Please select a sound file."
                 editSoundFileSheet.edit = false
                 editSoundFileSheet.open()
             }

@@ -29,6 +29,10 @@ Dialog {
 
     property bool edit: false
 
+    canAccept: category !== "Please chose a category." && category !== ""
+               && fileName !== "Please select a sound file." && fileName !== ""
+               && description !== ""
+
     onAccepted: {
         console.log("Accepted.")
         if (edit) {
@@ -72,6 +76,7 @@ Dialog {
 
                 TextField {
                     id: descriptionTextField
+                    placeholderText: "Please add a description."
                     width: parent.width
                 }
             }
@@ -115,6 +120,7 @@ Dialog {
                 Button {
                     id: addCategoryButton
                     text: "+"
+                    width: 75
                     onClicked: addCategoryDialog.open()
                 }
             }
@@ -176,14 +182,13 @@ Dialog {
     Dialog {
         id: addCategoryDialog
 
-//        DialogHeader {
-//            title: "Add Category"
-//        }
+        canAccept: newCategoryTextField !== ""
 
         TextField {
             id: newCategoryTextField
             anchors.centerIn: parent
-            width: parent.width * 0.75
+            placeholderText: "Please enter a category name."
+            width: parent.width * 0.9
         }
 
         onAccepted: {

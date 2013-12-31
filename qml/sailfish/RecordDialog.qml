@@ -128,7 +128,7 @@ Dialog {
                 }
             }
 
-            placeholderText: "Name for Recording (without .ogg)"
+            placeholderText: "Please enter a name (without .ogg)."
         }
 
         Row {
@@ -137,8 +137,7 @@ Dialog {
             anchors {
                 top: fileName.bottom
                 topMargin: 20
-                left: parent.left
-                right: parent.right
+                horizontalCenter: parent.horizontalCenter
             }
 
             Button {
