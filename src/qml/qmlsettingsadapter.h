@@ -32,6 +32,7 @@ public:
     Q_INVOKABLE QVariant get(QString key);
     Q_INVOKABLE int getInt(QString key);
     Q_INVOKABLE bool getBool(QString key);
+    Q_INVOKABLE QString getString(QString kex);
     
 signals:
     

@@ -23,6 +23,12 @@
 QmlSettingsAdapter::QmlSettingsAdapter(QObject *parent) :
     QObject(parent)
 {
+    if (getString("cover_action_1").isNull()) {
+        set("cover_action_1", "");
+    }
+    if (getString("cover_action_2").isNull()) {
+        set("cover_action_2", "");
+    }
 }
 
 QVariant QmlSettingsAdapter::get(QString key){
@@ -42,4 +48,8 @@ void QmlSettingsAdapter::set(QString key, QVariant val){
     QSettings settings;
     settings.setValue(key, val);
     settings.sync();
+}
+
+QString QmlSettingsAdapter::getString(QString key) {
+    return get(key).toString();
 }
