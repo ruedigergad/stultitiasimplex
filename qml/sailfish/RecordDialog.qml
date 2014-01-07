@@ -150,7 +150,7 @@ Dialog {
                     closeButton.enabled = false
                     startRecordButton.enabled = false
                     stopRecordButton.enabled = true
-                    recorder.startRecord("/home/nemo/.stultitiaSimplex/sounds/" + fileName.text + ".ogg")
+                    recorder.startRecord(fileSystemHelper.getHomePath() + "/.stultitiaSimplex/sounds/" + fileName.text + ".ogg")
                 }
             }
 

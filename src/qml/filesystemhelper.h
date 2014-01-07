@@ -20,6 +20,7 @@
 #ifndef FILESYSTEMHELPER_H
 #define FILESYSTEMHELPER_H
 
+#include <QDir>
 #include <QObject>
 #include <QStringList>
 
@@ -30,6 +31,8 @@ public:
     explicit FileSystemHelper(QObject *parent = 0);
 
     Q_INVOKABLE QString getWavFiles();
+
+    Q_INVOKABLE QString getHomePath() { return QDir::homePath(); }
     
 signals:
     

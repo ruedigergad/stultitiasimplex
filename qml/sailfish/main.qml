@@ -121,7 +121,7 @@ ApplicationWindow {
         onStopped: abortDialog.close()
 
         function playSoundFile(fileName) {
-            mediaPlayer.source = "/home/nemo/.stultitiaSimplex/sounds/" + fileName
+            mediaPlayer.source = fileSystemHelper.getHomePath() + "/.stultitiaSimplex/sounds/" + fileName
             mediaPlayer.play()
         }
     }
