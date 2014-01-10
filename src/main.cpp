@@ -45,7 +45,7 @@
 Q_DECL_EXPORT int main(int argc, char *argv[])
 {
     if (! QDir().exists(QDir::homePath() + "/.stultitiaSimplex")) {
-        QDir().mkpath(QDir::homePath() + "/home/nemo/.stultitiaSimplex/sounds");
+        QDir().mkpath(QDir::homePath() + "/.stultitiaSimplex/sounds");
     }
 
 #if defined(MER_EDITION_SAILFISH)
